@@ -303,7 +303,7 @@ body.touch .cr-t{font-size:19px}
 @media (max-width:620px){
  body.touch #mini{left:auto;right:calc(10px + env(safe-area-inset-right,0px));top:calc(84px + env(safe-area-inset-top,0px))}
  body.touch #miniC{width:88px;height:88px}
- body.touch #inv{left:calc(22px + env(safe-area-inset-left,0px));transform:none;bottom:calc(166px + env(safe-area-inset-bottom,0px))}
+ body.touch #inv{left:calc(22px + env(safe-area-inset-left,0px));transform:none;bottom:calc(196px + env(safe-area-inset-bottom,0px))}
  body.touch #inv .hbtn{width:48px;height:48px}
  body.touch .fg-body{grid-template-columns:1fr}
  body.touch .fg-list{max-height:150px}
@@ -324,6 +324,40 @@ body.touch .cr-t{font-size:19px}
 #recallBar .bar{width:200px;height:7px}
 #recallBar .bar i{width:0;background:linear-gradient(90deg,#5fb8d8,#c8f2ff);transition:none}
 body.touch #talk .dlg{max-height:calc(100vh - 24px);overflow:auto}
+
+#skillBar{position:absolute;left:50%;bottom:calc(58px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;gap:8px;pointer-events:auto}
+.sk{position:relative;width:52px;height:52px;border-radius:12px;border:1.5px solid rgba(255,255,255,.28);background:rgba(18,20,16,.6);padding:0;display:grid;place-items:center;cursor:pointer;overflow:hidden}
+.sk img{width:44px;height:44px;border-radius:50%}
+.sk .key{position:absolute;left:4px;top:2px;font:800 11px var(--font);color:#fff;text-shadow:0 1px 2px #000}
+.sk .cdm{position:absolute;inset:0;display:grid;place-items:center;font:800 18px var(--font);color:#fff;text-shadow:0 1px 3px #000;font-style:normal;pointer-events:none}
+.sk.empty{opacity:.55}
+#toasts{bottom:calc(122px + env(safe-area-inset-bottom,0px))}
+#hint{left:auto;right:calc(232px + env(safe-area-inset-right,0px));transform:none}
+#skillBar{bottom:calc(60px + env(safe-area-inset-bottom,0px))}
+@media (max-width:1180px){#skillBar{left:auto;transform:none;right:calc(232px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}}
+#bossBar{position:absolute;left:50%;top:calc(16px + env(safe-area-inset-top,0px));transform:translateX(-50%);width:min(420px,calc(100vw - 600px));min-width:240px;display:grid;justify-items:center;gap:4px;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+#bossBar .bn{font-size:15px;font-weight:900;color:#e3c2ff;letter-spacing:.1em}
+#bossBar .bar{width:100%;height:12px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.45)}
+#bossBar .bar i{background:linear-gradient(90deg,#7b3f98,#c78aff);transition:width .15s}
+#bossBar .bhp{font-size:11px;color:var(--dim)}
+.bar i.poison{background:linear-gradient(90deg,#4f9a2e,#9ad86a)!important}
+.ft.poison{color:#a8e86a;font-size:16px}
+.sslots{display:flex;gap:8px}
+.sslot{position:relative;width:56px;height:56px;border-radius:12px;border:1px dashed rgba(255,255,255,.25);background:rgba(255,255,255,.04);display:grid;place-items:center;padding:0;cursor:default}
+.sslot.has{border-style:solid;border-color:rgba(176,107,255,.6);cursor:pointer}
+.sslot img{width:46px;height:46px;border-radius:50%}
+.sslot b{position:absolute;left:5px;top:3px;font-size:11px;color:var(--dim)}
+.skbtns{display:flex;gap:4px}
+.skbtns .btn{padding:6px 10px;font-size:12px;min-width:30px}
+body.touch #skillBar{left:auto;transform:none;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(134px + env(safe-area-inset-bottom,0px));gap:8px}
+body.touch .sk{width:50px;height:50px;border-radius:50%}
+body.touch .sk img{width:46px;height:46px}
+body.touch #tE{right:calc(128px + env(safe-area-inset-right,0px));bottom:calc(36px + env(safe-area-inset-bottom,0px))}
+body.touch #bossBar{top:calc(100px + env(safe-area-inset-top,0px));width:min(320px,calc(100vw - 32px));min-width:0}
+body.touch #toasts{bottom:calc(200px + env(safe-area-inset-bottom,0px))}
+@media (max-height:480px){body.touch #skillBar{bottom:calc(106px + env(safe-area-inset-bottom,0px));right:calc(18px + env(safe-area-inset-right,0px))}body.touch .sk{width:44px;height:44px}body.touch .sk img{width:40px;height:40px}body.touch #tE{right:calc(116px + env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px))}
+ body.touch #inv{top:calc(10px + env(safe-area-inset-top,0px));right:auto;left:calc(310px + env(safe-area-inset-left,0px));flex-direction:row}body.touch #bossBar{top:calc(66px + env(safe-area-inset-top,0px))}body.touch #toasts{bottom:calc(20px + env(safe-area-inset-bottom,0px))}}
+@media (max-width:620px){body.touch #bossBar{top:calc(190px + env(safe-area-inset-top,0px))}}
 
 #mini{position:absolute;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));padding:10px;display:grid;gap:8px;justify-items:center}
 #miniC{width:176px;height:176px;display:block}
@@ -425,7 +459,15 @@ kbd{display:inline-grid;place-items:center;min-width:22px;height:22px;border-rad
   <div id="inv">
     <button class="hbtn panel" id="btnWeapon" aria-label="무기 창 열기"><img id="icoSword" alt=""><span class="hl">무기</span><span class="hs" id="wEq">괭이</span></button>
     <button class="hbtn panel" id="btnRecall" aria-label="귀환 (B)" hidden><img id="icoRecall" alt=""><span class="hl">귀환</span><span class="hs" id="recallTo">평야 안전구역</span></button>
+    <button class="hbtn panel" id="btnSkill" aria-label="스킬 (K)"><img id="icoSkill" alt=""><span class="hl">스킬</span><span class="hs">장착하기</span></button>
     <button class="hbtn panel" id="btnBag" aria-label="가방 열기 (I)"><img id="icoBag" alt=""><span class="hl">가방</span><span class="hs num" id="bagN">비어 있음</span></button>
+  </div>
+  <div id="sWin" class="win panel" hidden>
+    <div class="win-h"><b>스킬</b><span class="win-c">1 · 2 · 3번 키로 사용</span><button class="x" data-close aria-label="닫기">×</button></div>
+    <div class="win-sub">장착한 스킬</div>
+    <div id="sSlots" class="sslots"></div>
+    <div class="win-sub">가진 스킬</div>
+    <div id="sList" class="list"></div>
   </div>
   <div id="wWin" class="win panel" hidden>
     <div class="win-h"><b>무기</b><button class="x" data-close aria-label="닫기">×</button></div>
@@ -450,6 +492,8 @@ kbd{display:inline-grid;place-items:center;min-width:22px;height:22px;border-rad
   <div id="mini" class="panel"><canvas id="miniC" width="352" height="352"></canvas><div class="legend"><span><i style="background:#fff"></i>나</span><span><i style="background:#f2c14e"></i><b id="lgNpc" style="font-weight:400">농부</b></span><span><i style="background:#ff6b5a"></i>작물</span></div></div>
   <div id="banner"></div>
   <div id="toasts" aria-live="polite"></div>
+  <div id="skillBar" hidden><button class="sk empty" data-i="0"><img alt="" hidden><b class="key">1</b><i class="cdm"></i></button><button class="sk empty" data-i="1"><img alt="" hidden><b class="key">2</b><i class="cdm"></i></button><button class="sk empty" data-i="2"><img alt="" hidden><b class="key">3</b><i class="cdm"></i></button></div>
+  <div id="bossBar" hidden><div class="bn">버섯킹</div><div class="bar"><i id="bossFill"></i></div><div class="bhp num" id="bossHp"></div></div>
   <div id="recallBar" hidden><span>귀환 중</span><div class="bar"><i id="recallFill"></i></div></div>
 </div>
 
@@ -769,13 +813,16 @@ const pineTier=(()=>{const g=new THREE.ConeGeometry(1,1,14,1);g.translate(0,.5,0
 function addSwayY(mat,amp,H){mat.customProgramCacheKey=()=>'swayY'+amp+'_'+H;mat.onBeforeCompile=sh=>{sh.uniforms.uTime=uTime;sh.vertexShader='uniform float uTime;\n'+sh.vertexShader.replace('#include <project_vertex>',`
   float hh=clamp(transformed.y/${H.toFixed(2)},0.0,1.0);hh*=hh;
   vec4 wp=vec4(transformed,1.0);
+  vec2 base=vec2(0.0);
   #ifdef USE_INSTANCING
-    wp=instanceMatrix*wp;
+    wp=instanceMatrix*wp;base=(instanceMatrix*vec4(0.0,0.0,0.0,1.0)).xz;
   #endif
   wp=modelMatrix*wp;
-  float ph=wp.x*0.33+wp.z*0.27;
-  wp.x+=(sin(uTime*1.6+ph)*${amp.toFixed(3)}+sin(uTime*3.3+ph*2.1)*${(amp*.35).toFixed(3)})*hh;
-  wp.z+=cos(uTime*1.25+ph*1.3)*${(amp*.55).toFixed(3)}*hh;
+  float rnd=fract(sin(dot(base,vec2(12.9898,78.233)))*43758.5453);
+  float ph=rnd*6.2832+(base.x+base.y)*0.05;
+  float sp=0.8+rnd*0.5;
+  wp.x+=(sin(uTime*1.3*sp+ph)*${amp.toFixed(3)}+sin(uTime*2.7*sp+ph*1.7)*${(amp*.3).toFixed(3)})*hh;
+  wp.z+=cos(uTime*1.1*sp+ph*1.3)*${(amp*.5).toFixed(3)}*hh;
   vec4 mvPosition=viewMatrix*wp;
   gl_Position=projectionMatrix*mvPosition;`);};}
 function plantGeo(parts){const pos=[],nor=[],col=[];const c0=new THREE.Color(),c1=new THREE.Color(),cc=new THREE.Color();
@@ -804,9 +851,9 @@ function plantInst(geo,list,amp,H,tint){if(!list.length)return;const mat=new THR
   list.forEach((it,i)=>{q.setFromAxisAngle(up,R(0,TAU));p.set(it.x,0,it.z);s.set(it.s,it.h,it.s);m.compose(p,q,s);im.setMatrixAt(i,m);const v=R(tint[0],tint[1]);c.setRGB(v,v*R(.97,1.02),v*R(.92,1));im.setColorAt(i,c);});
   im.instanceMatrix.needsUpdate=true;if(im.instanceColor)im.instanceColor.needsUpdate=true;ROOT.add(im);return im;}
 function plants(kind,list,amp){if(TOUCH)list=list.filter((_,i)=>i%5<3);
-  if(kind==='grass'){const fl=[],gr=[];for(const it of list)(Math.random()<.07?fl:gr).push({x:it.x,z:it.z,s:it.s*1.2,h:it.h*1.5});plantInst(PLANT_GEO.grass,gr,amp,.5,[.82,1.05]);plantInst(PLANT_GEO.flower,fl,amp,.5,[.95,1.05]);return;}
+  if(kind==='grass'){const fl=[],gr=[];for(const it of list)(Math.random()<.07?fl:gr).push({x:it.x,z:it.z,s:it.s*1.2,h:it.h*1.5});plantInst(PLANT_GEO.grass,gr,.018,.5,[.82,1.05]);plantInst(PLANT_GEO.flower,fl,.02,.5,[.95,1.05]);return;}
   const big=list.map(it=>({x:it.x,z:it.z,s:it.s,h:it.h*(kind==='wheat'?1:1.05)}));
-  plantInst(PLANT_GEO[kind],big,amp*1.2,1,[.85,1.04]);}
+  plantInst(PLANT_GEO[kind],big,.035,1,[.85,1.04]);}
 {
   
   const big=[];for(let x=-30;x<=30;x+=.85)for(let z=-45;z<=-17;z+=.85){if(Math.random()<.08)continue;big.push({x:x+R(-.35,.35),z:z+R(-.35,.35),s:R(1.0,1.35),h:R(1.05,1.35)});}
@@ -1118,7 +1165,7 @@ function makeWheatItem(){const g=new THREE.Group();const inner=new THREE.Group()
 function addGlow(g){const glow=new THREE.Mesh(new THREE.PlaneGeometry(1.2,1.2),new THREE.MeshBasicMaterial({map:glowTex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));glow.rotation.x=-Math.PI/2;glow.position.y=.04;g.add(glow);}
 function makeRiceItem(){const g=new THREE.Group(),inner=new THREE.Group();g.add(inner);for(let i=0;i<3;i++){const s=new THREE.Group();s.rotation.y=i*2.1;inner.add(s);mesh(new THREE.CylinderGeometry(.015,.02,.5,5),M.straw,0,.25,0,s);for(let k=0;k<6;k++){const t=k/5;const gr=mesh(RG.grain,M.grainBig,.02+t*.2,.5+Math.sin(t*2.4)*.06-t*t*.25,0,s);gr.rotation.z=-t*1.4;}}const b=mesh(new THREE.TorusGeometry(.06,.022,6,12),M.twine,0,.2,0,inner);b.rotation.x=Math.PI/2;addGlow(g);g.userData.inner=inner;return g;}
 function makeAppleItem(){const g=new THREE.Group(),inner=new THREE.Group();g.add(inner);const a=mesh(appleGeo,M.apple,0,.25,0,inner);a.scale.setScalar(.42);const st=mesh(new THREE.CylinderGeometry(.014,.02,.12,6),M.bark,.01,.47,0,inner);st.rotation.z=-.25;const lf=mesh(appleLeafGeo,M.riceLeaf,.07,.48,0,inner);lf.scale.setScalar(.6);lf.rotation.z=.35;addGlow(g);g.userData.inner=inner;return g;}
-function makeItemMesh(k){return k==='rice'?makeRiceItem():k==='apple'?makeAppleItem():k==='grain'?makeGrainItem():k==='peel'?makePeelItem():makeWheatItem();}
+function makeItemMesh(k){if(k==='mush')return makeMushItem();if(k==='skill_spore')return makeSkillItem();return k==='rice'?makeRiceItem():k==='apple'?makeAppleItem():k==='grain'?makeGrainItem():k==='peel'?makePeelItem():makeWheatItem();}
 const drops=[];
 function spawnDrop(pos,k){const g=makeItemMesh(k);g.position.copy(pos);g.position.y=.6;W.root.add(g);const a=R(0,TAU);drops.push({g,k,vx:Math.sin(a)*1.6,vz:Math.cos(a)*1.6,vy:4.5,t:0,landed:false});}
 
@@ -1445,7 +1492,7 @@ Object.assign(SFX,{
 let state='menu';   // menu → cine → play → travel → arrive → play
 let clockT=0;
 let gold=0,goldShown=0;
-const inv={hoe:0,wheat:0,rice:0,apple:0,grain:0,peel:0,sword:0};
+const inv={hoe:0,wheat:0,rice:0,apple:0,grain:0,peel:0,sword:0,mush:0};
 const bag=[];
 let equipped=null;
 const owned=[];
@@ -1484,8 +1531,8 @@ function addItem(k,n=1){inv[k]+=n;if(inv[k]>0&&!bag.includes(k))bag.push(k);rend
 function removeItem(k,n){inv[k]=Math.max(0,inv[k]-n);if(inv[k]===0){const i=bag.indexOf(k);if(i>=0)bag.splice(i,1);}renderInv();}
 function equip(k){if(state!=='play')return;equipped=k;setHeld(k);SFX.ui();renderInv();showBanner(ITEMS[k].name+' 장착');}
 function unequip(){if(!equipped||state!=='play')return;equipped=null;setHeld(null);SFX.ui();renderInv();showBanner('무기 해제');}
-function openWin(id){for(const w of['wWin','bWin']){const el=$('#'+w);const on=w===id&&el.hidden;el.hidden=!on;}$('#btnWeapon').classList.toggle('on',!$('#wWin').hidden);$('#btnBag').classList.toggle('on',!$('#bWin').hidden);SFX.ui();}
-function closeWins(){let any=false;for(const w of['wWin','bWin']){if(!$('#'+w).hidden)any=true;$('#'+w).hidden=true;}$('#btnWeapon').classList.remove('on');$('#btnBag').classList.remove('on');return any;}
+function openWin(id){if(id==='sWin')renderSkillUI();for(const w of['wWin','bWin','sWin']){const el=$('#'+w);const on=w===id&&el.hidden;el.hidden=!on;}$('#btnWeapon').classList.toggle('on',!$('#wWin').hidden);$('#btnBag').classList.toggle('on',!$('#bWin').hidden);$('#btnSkill').classList.toggle('on',!$('#sWin').hidden);SFX.ui();}
+function closeWins(){$('#btnSkill').classList.remove('on');let any=false;for(const w of['wWin','bWin','sWin']){if(!$('#'+w).hidden)any=true;$('#'+w).hidden=true;}$('#btnWeapon').classList.remove('on');$('#btnBag').classList.remove('on');return any;}
 $('#btnWeapon').addEventListener('click',()=>openWin('wWin'));
 $('#btnBag').addEventListener('click',()=>openWin('bWin'));
 document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',closeWins));
@@ -1503,7 +1550,7 @@ function questEvent(type,n=1){if(qi===0&&type==='kill'){qProg+=n;updQuest();if(q
 
 /* ================= 상점 ================= */
 let shopOpen=false;
-const SELLABLE=['wheat','rice','apple'];
+const SELLABLE=['wheat','rice','apple','mush'];
 let curNpc=null;
 function nearNpc(){if(player.dead)return null;let best=null,bd=3.2;for(const n of W.npcs||[]){const d=Math.hypot(player.pos.x-n.pos.x,player.pos.z-n.pos.z);if(d<bd){bd=d;best=n;}}return best;}
 function shopKeys(){return SELLABLE.filter(k=>inv[k]>0&&(curNpc.buys==='all'||curNpc.buys.includes(k)));}
@@ -1526,10 +1573,10 @@ function tryAttack(fromTouch){const P=player;if(shopOpen||forgeOpen||talkOpen||P
   if(mouseIn){ray.setFromCamera(mouse,camera);if(ray.ray.intersectPlane(gPlane,hitP)){const dx=hitP.x-P.pos.x,dz=hitP.z-P.pos.z;if(dx*dx+dz*dz>.04)P.facing=Math.atan2(dx,dz);}}
   P.atkT=0;P.atkCd=WEP[equipped].cd;P.swooshed=false;P.dealt=false;P.wk=equipped;if(equipped==='sword')SFX.slash();else SFX.swing();}
 function dealDamage(){const P=player;let any=false;const dmg=atk();const k=P.wk||'hoe',w=WEP[k];swingImpactFx(k);for(const m of mons){if(m.dead||m.spawnT<1)continue;const dx=m.root.position.x-P.pos.x,dz=m.root.position.z-P.pos.z,d=Math.hypot(dx,dz);if(d-m.t.r>w.range)continue;const a=Math.atan2(dx,dz);if(d<1+m.t.r||Math.abs(angDiff(P.facing,a))<w.arc){hitMon(m,dmg,dx/(d||1),dz/(d||1));hitFx(m,k);any=true;}}if(any){shake=Math.max(shake,k==='sword'?.3:.2);if(k==='sword')SFX.squish();}}
-function hitMon(m,dmg,nx,nz){const heavy=m.k==='apple'?.45:1;m.hp-=dmg;m.flash=1;m.kb=.2;m.kbx=nx*6*heavy;m.kbz=nz*6*heavy;m.hpG.visible=true;if(m.state==='attack')m.state='chase';m.atkCd=Math.max(m.atkCd,.5);SFX.hit();floatText(String(dmg),m.root.position.clone().add(new THREE.Vector3(0,1.5,0)));chaff(m.root.position,6);
-  if(m.hp<=0){m.dead=true;m.deathT=0;m.hpG.visible=false;SFX.kill();chaff(m.root.position,16);dust(m.root.position,6,'#d9c08a',1.6);spawnDrop(m.root.position.clone(),m.k);if(m.k==='rice'&&Math.random()<.2)spawnDrop(m.root.position.clone(),'grain');if(m.k==='apple'&&Math.random()<.15)spawnDrop(m.root.position.clone(),'peel');gainXP(m.t.xp,m.root.position);if(m.k==='wheat')questEvent('kill');}}
+function hitMon(m,dmg,nx,nz,pois){if(m.dead)return;const heavy=m.k==='king'?0:m.k==='mush'?.6:m.k==='apple'?.45:1;m.hp-=dmg;m.flash=pois?.5:1;if(heavy){m.kb=.2;m.kbx=nx*6*heavy;m.kbz=nz*6*heavy;}if(!m.boss)m.hpG.visible=true;if(m.state==='attack')m.state='chase';if(!m.boss)m.atkCd=Math.max(m.atkCd,.5);if(!pois){SFX.hit();chaff(m.root.position,6);}floatText(String(dmg),m.root.position.clone().add(new THREE.Vector3(0,m.boss?4.2:1.5,0)),pois?'poison':'');
+  if(m.hp<=0){m.dead=true;m.deathT=0;m.hpG.visible=false;SFX.kill();chaff(m.root.position,16);dust(m.root.position,6,'#d9c08a',1.6);if(m.k==='king')kingDied(m);else{spawnDrop(m.root.position.clone(),m.k);if(m.k==='mush')spawnBomb(m.root.position.clone());}if(m.k==='rice'&&Math.random()<.2)spawnDrop(m.root.position.clone(),'grain');if(m.k==='apple'&&Math.random()<.15)spawnDrop(m.root.position.clone(),'peel');gainXP(m.t.xp,m.root.position);if(m.k==='wheat')questEvent('kill');}}
 function hurtPlayer(dmg,from){const P=player;if(P.inv>0||P.dead||state!=='play')return;P.hp=Math.max(0,P.hp-dmg);P.inv=.55;cancelRecall('공격받아 귀환이 취소됐어요');const dx=P.pos.x-from.x,dz=P.pos.z-from.z,d=Math.hypot(dx,dz)||1;P.kbx=dx/d*7;P.kbz=dz/d*7;shake=.35;SFX.hurt();setHP();floatText('-'+dmg,P.pos.clone().add(new THREE.Vector3(0,1.75,0)),'hurt');const h=$('#hurt');h.style.transition='none';h.style.opacity='1';requestAnimationFrame(()=>{h.style.transition='opacity .5s';h.style.opacity='0';});if(P.hp<=0)die();}
-function die(){const P=player;P.dead=true;P.atkT=-1;showBanner('쓰러졌다…',2);const f=$('#fade');setTimeout(()=>{f.style.opacity='1';},700);setTimeout(()=>{P.pos.copy(W===cropWorld?RETURN[returnPoint].pos:W.spawn);P.hp=P.maxHp;P.dead=false;P.kbx=P.kbz=0;P.rig.body.rotation.set(0,0,0);setHP();camFocus.copy(P.pos);f.style.opacity='0';showBanner(W===farmWorld?'농부가 농장으로 데려다 줬다':`${RETURN[returnPoint].name}에서 정신을 차렸다`,2.2);},1700);}
+function die(){const P=player;P.dead=true;P.atkT=-1;P.poison=null;showBanner('쓰러졌다…',2);const f=$('#fade');setTimeout(()=>{f.style.opacity='1';},700);setTimeout(()=>{P.pos.copy(W===cropWorld?RETURN[returnPoint].pos:W.spawn);P.hp=P.maxHp;P.dead=false;P.kbx=P.kbz=0;P.rig.body.rotation.set(0,0,0);setHP();camFocus.copy(P.pos);f.style.opacity='0';showBanner(W===farmWorld?'농부가 농장으로 데려다 줬다':`${RETURN[returnPoint].name}에서 정신을 차렸다`,2.2);},1700);}
 
 /* ================= 이동/충돌 ================= */
 function moveCollide(pos,dx,dz,r){
@@ -1550,7 +1597,7 @@ function pickType(z){let tot=0;for(const[,w]of z.types)tot+=w;let r=Math.random(
 function spawnMon(zi,pop){const z=W.zones[zi];const k=pickType(z);const t=MT[k];const m=t.make();const p=pickIn(z);m.root.position.copy(p);m.root.rotation.y=R(0,TAU);W.root.add(m.root);
   Object.assign(m,{k,t,zi,hp:t.hp,maxHp:t.hp,state:'wander',at:0,t2:0,wt:null,wait:R(0,2),atkCd:0,skillCd:R(2,5),flash:0,kb:0,kbx:0,kbz:0,facing:m.root.rotation.y,hop:R(0,6),seed:monSeed++,dead:false,deathT:0,spawnT:pop?0:1,moving:false,strafe:Math.random()<.5?1:-1,shot:false,hit:false});
   if(pop)m.body.scale.setScalar(.01);mons.push(m);return m;}
-function clearWorldActors(){for(const m of mons)m.root.parent&&m.root.parent.remove(m.root);mons.length=0;for(const d of drops)d.g.parent&&d.g.parent.remove(d.g);drops.length=0;for(const p of projs)p.m.parent&&p.m.parent.remove(p.m);projs.length=0;for(const r of rains){for(const d of r.drops){d.m.parent&&d.m.parent.remove(d.m);d.sh.parent&&d.sh.parent.remove(d.sh);}r.fill.parent&&r.fill.parent.remove(r.fill);r.ring.parent&&r.ring.parent.remove(r.ring);}rains.length=0;}
+function clearWorldActors(){for(const b of bombs)b.g.parent&&b.g.parent.remove(b.g);bombs.length=0;for(const t of teles){t.m.parent&&t.m.parent.remove(t.m);if(t.rg)t.rg.parent&&t.rg.parent.remove(t.rg);}teles.length=0;king=null;summons=[];for(const m of mons)m.root.parent&&m.root.parent.remove(m.root);mons.length=0;for(const d of drops)d.g.parent&&d.g.parent.remove(d.g);drops.length=0;for(const p of projs)p.m.parent&&p.m.parent.remove(p.m);projs.length=0;for(const r of rains){for(const d of r.drops){d.m.parent&&d.m.parent.remove(d.m);d.sh.parent&&d.sh.parent.remove(d.sh);}r.fill.parent&&r.fill.parent.remove(r.fill);r.ring.parent&&r.ring.parent.remove(r.ring);}rains.length=0;}
 function populate(){W.zones.forEach((z,i)=>{for(let k=0;k<z.max;k++)spawnMon(i,false);});}
 /* 떠오르는 숫자 */
 const floats=[];const vtmp=new THREE.Vector3();
@@ -1563,7 +1610,7 @@ let yaw=0,camDist=17,rotating=false,lastX=0;
 const mouse=new THREE.Vector2();let mouseIn=false;
 addEventListener('keydown',e=>{keys[e.code]=true;
   if(state==='cine'&&(e.code==='Space'||e.code==='Enter')){e.preventDefault();advance();}
-  if(state==='play'){if(e.code==='KeyI'&&!e.repeat&&!shopOpen&&!forgeOpen)openWin('bWin');if(e.code==='Escape'&&closeWins())return;if(e.code==='KeyE'&&!e.repeat){if(shopOpen)closeShop();else if(forgeOpen)closeForge();else if(talkOpen)closeTalk();else interactNpc(nearNpc());}if(e.code==='KeyB'&&!e.repeat)startRecall();if(e.code==='Escape'){if(shopOpen)closeShop();if(forgeOpen)closeForge();if(talkOpen)closeTalk();}}
+  if(state==='play'){if(e.code==='KeyI'&&!e.repeat&&!shopOpen&&!forgeOpen)openWin('bWin');if(e.code==='Escape'&&closeWins())return;if(e.code==='KeyE'&&!e.repeat){if(shopOpen)closeShop();else if(forgeOpen)closeForge();else if(talkOpen)closeTalk();else interactNpc(nearNpc());}if(e.code==='KeyB'&&!e.repeat)startRecall();if(!e.repeat&&(e.code==='Digit1'||e.code==='Digit2'||e.code==='Digit3'))useSkill(+e.code.slice(5)-1);if(e.code==='KeyK'&&!e.repeat&&!shopOpen&&!forgeOpen)openWin('sWin');if(e.code==='Escape'){if(shopOpen)closeShop();if(forgeOpen)closeForge();if(talkOpen)closeTalk();}}
 });
 addEventListener('keyup',e=>{keys[e.code]=false;});
 addEventListener('blur',()=>{for(const k in keys)keys[k]=false;rotating=false;});
@@ -1632,7 +1679,8 @@ function updMons(dt){
     if(m.spawnT<1){m.spawnT=Math.min(1,m.spawnT+dt*2.2);m.body.scale.setScalar(Math.max(.01,easeOut(m.spawnT)));}
     if(m.dead){m.deathT+=dt;const k=Math.min(1,m.deathT/.45);m.body.scale.set(1+k*.4,Math.max(.01,1-k),1+k*.4);m.body.rotation.y+=dt*10;if(k>=1){m.root.parent&&m.root.parent.remove(m.root);m.remove=true;}continue;}
     m.atkCd-=dt;m.skillCd-=dt;m.flash=Math.max(0,m.flash-dt*5);
-    const fe=m.flash*.55;for(const k in m.mats)m.mats[k].emissive.setRGB(fe,fe*.9,fe*.7);
+    const fe=m.flash*.55;for(const k in m.mats)m.mats[k].emissive.setRGB(fe,fe*.9,fe*.7);if(m.poison)for(const k in m.mats)m.mats[k].emissive.g+=.18;
+    if(m.k==='king'){kingAct(m,dt);continue;}
     const dx=P.pos.x-p.x,dz=P.pos.z-p.z,dist=Math.hypot(dx,dz)||.001;
     let vx=0,vz=0,want=null;
     if(m.kb>0){m.kb-=dt;vx=m.kbx;vz=m.kbz;m.kbx=damp(m.kbx,0,10,dt);m.kbz=damp(m.kbz,0,10,dt);m.body.rotation.x=damp(m.body.rotation.x,-.35,12,dt);}
@@ -1683,7 +1731,7 @@ let respawnT=0;
 function updDrops(dt){const P=player;for(let i=drops.length-1;i>=0;i--){const d=drops[i],g=d.g;d.t+=dt;
   if(!d.landed){d.vy-=14*dt;g.position.x+=d.vx*dt;g.position.z+=d.vz*dt;g.position.y+=d.vy*dt;if(g.position.y<=.05&&d.vy<0){g.position.y=.05;d.landed=true;}}
   g.userData.inner.rotation.y+=dt*2;if(g.userData.beam){g.userData.beam.material.opacity=.55+Math.sin(d.t*5)*.25;}g.userData.inner.position.y=d.landed?.12+Math.sin(d.t*3)*.07:0;
-  if(state==='play'&&!P.dead&&d.t>.45){const dx=P.pos.x-g.position.x,dz=P.pos.z-g.position.z,dd=Math.hypot(dx,dz);if(dd<3.4){const s=Math.min(1,(3.4-dd)/3.4)*12+3;g.position.x+=dx/dd*s*dt;g.position.z+=dz/dd*s*dt;}if(dd<.7){g.parent&&g.parent.remove(g);drops.splice(i,1);addItem(d.k,1);if(ITEMS[d.k].rare)SFX.rare();else SFX.pickup();pickupToast(d.k,1);}}}}
+  if(state==='play'&&!P.dead&&d.t>.45){const dx=P.pos.x-g.position.x,dz=P.pos.z-g.position.z,dd=Math.hypot(dx,dz);if(dd<3.4){const s=Math.min(1,(3.4-dd)/3.4)*12+3;g.position.x+=dx/dd*s*dt;g.position.z+=dz/dd*s*dt;}if(dd<.7){g.parent&&g.parent.remove(g);drops.splice(i,1);if(d.k==='skill_spore'){unlockSkill('spore');}else{addItem(d.k,1);if(ITEMS[d.k].rare)SFX.rare();else SFX.pickup();pickupToast(d.k,1);}}}}}
 let merchant=null;
 function updMerchant(dt){if(!merchant||W!==cropWorld)return;const r=merchant.rig;merchant.t+=dt;const dx=player.pos.x-MERCH_POS.x,dz=player.pos.z-MERCH_POS.z;if(Math.hypot(dx,dz)<9)merchant.target=Math.atan2(dx,dz);else merchant.target=0;merchant.facing=dampAngle(merchant.facing,merchant.target,4,dt);r.root.rotation.y=merchant.facing;r.body.position.y=Math.sin(merchant.t*2)*.01;
   const wave=nearNpc()===W.npc&&!shopOpen;r.armR.rotation.x=damp(r.armR.rotation.x,wave?-2.4:Math.sin(merchant.t*1.3)*.05,6,dt);r.armR.rotation.z=damp(r.armR.rotation.z,wave?-.3+Math.sin(merchant.t*8)*.25:-.15,8,dt);r.armL.rotation.x=damp(r.armL.rotation.x,-Math.sin(merchant.t*1.3)*.05,6,dt);}
@@ -1797,12 +1845,150 @@ function farmMap(){const k=4,SZ=120*k,o=SZ/2;const c=cnv(SZ,SZ),g=c.getContext('
   g.fillStyle='#b4493a';g.fillRect(X(-5.7),X(-7.6),5*k,4*k);g.fillStyle='#d8b05a';g.beginPath();g.arc(X(5.8),X(-4.2),.9*k,0,TAU);g.arc(X(4.1),X(-7.2),.7*k,0,TAU);g.fill();g.fillStyle='#7cb4c6';g.fillRect(X(-6),X(3),1.6*k,.8*k);
   drawTrees(g,farmTrees,X,X,k);
   return {c,x0:-60,z0:-60,k};}
-function drawZone(g,zn,X,Z,k){const col=zn.kind==='paddy'?'#5d6f4c':zn.kind==='grove'?'#3f5d26':'#7a5a3a';g.fillStyle=col;g.fillRect(X(zn.x0-1.5),Z(zn.z0-1.5),(zn.x1-zn.x0+3)*k,(zn.z1-zn.z0+3)*k);
+function drawZone(g,zn,X,Z,k){if(zn.kind==='arena')return;const col=zn.kind==='paddy'?'#5d6f4c':zn.kind==='grove'?'#3f5d26':'#7a5a3a';g.fillStyle=col;g.fillRect(X(zn.x0-1.5),Z(zn.z0-1.5),(zn.x1-zn.x0+3)*k,(zn.z1-zn.z0+3)*k);
   if(zn.kind==='grove')return;g.strokeStyle=zn.kind==='paddy'?'rgba(170,210,120,.6)':'rgba(220,190,100,.55)';g.lineWidth=2.5;const alongX=(zn.x1-zn.x0)>(zn.z1-zn.z0);
   if(alongX){for(let z=zn.z0+.6;z<=zn.z1;z+=2.6){g.beginPath();g.moveTo(X(zn.x0),Z(z));g.lineTo(X(zn.x1),Z(z));g.stroke();}}else{for(let x=zn.x0+.6;x<=zn.x1;x+=2.6){g.beginPath();g.moveTo(X(x),Z(zn.z0));g.lineTo(X(x),Z(zn.z1));g.stroke();}}}
 function drawTrees(g,list,X,Z,k){for(const t of list){g.fillStyle='rgba(0,0,0,.25)';g.beginPath();g.arc(X(t.x)+2,Z(t.z)+2,1.5*t.s*k,0,TAU);g.fill();g.fillStyle=t.pine?'#2f5a2e':'#3f6a28';g.beginPath();g.arc(X(t.x),Z(t.z),1.5*t.s*k,0,TAU);g.fill();if(t.apple){g.fillStyle='#e0453a';for(let i=0;i<4;i++){const a=i*1.7;g.beginPath();g.arc(X(t.x)+Math.cos(a)*t.s*k*.8,Z(t.z)+Math.sin(a)*t.s*k*.8,2.4,0,TAU);g.fill();}}}}
 const farmTrees=TREES;
 farmWorld.map=farmMap();farmWorld.npcs=[farmWorld.npc];
+
+/* ================= 깊은 숲: 버섯 · 버섯킹 · 스킬 ================= */
+const KC=new THREE.Vector3(0,0,244),KR=13;
+const DEEP_ZONES=[{x0:-42,x1:-12,z0:186,z1:224,types:[['mush',1]],max:4,kind:'grove'},{x0:12,x1:42,z0:190,z1:226,types:[['mush',1]],max:4,kind:'grove'}];
+const ARENA_ZONE={x0:KC.x-KR+2,x1:KC.x+KR-2,z0:KC.z-KR+2,z1:KC.z+KR-2,types:[['mush',1]],max:0,kind:'arena'};
+const inArena=p=>Math.hypot(p.x-KC.x,p.z-KC.z)<KR;
+M.mCap=vinyl('#b2452f');M.mStem=vinyl('#efe2c6');M.mSpot=vinyl('#fbf4e4');M.kCap=vinyl('#7b3f98');M.kSpot=new THREE.MeshStandardMaterial({color:'#e3c2ff',emissive:'#b06bff',emissiveIntensity:.8,roughness:.4});M.crown=vinyl('#e8b53a',{roughness:.35,metalness:.4});M.gem=new THREE.MeshStandardMaterial({color:'#7cf0c0',emissive:'#2bd99a',emissiveIntensity:.8});
+const MG={stem:(()=>{const g=new THREE.CylinderGeometry(.27,.34,.62,18,3);const p=g.attributes.position;for(let i=0;i<p.count;i++){const y=p.getY(i),k=1+.1*Math.cos(y*4);p.setX(i,p.getX(i)*k);p.setZ(i,p.getZ(i)*k);}g.computeVertexNormals();return g;})(),
+  cap:(()=>{const g=new THREE.SphereGeometry(.6,28,16,0,TAU,0,Math.PI/2);g.scale(1,.72,1);return g;})(),gill:new THREE.CylinderGeometry(.56,.42,.08,24),spot:sEllip(.09,.03,.09,2.2,10,6)};
+function makeMushMon(sc,king){const root=new THREE.Group(),body=new THREE.Group();root.add(body);const inner=new THREE.Group();inner.scale.setScalar(sc);body.add(inner);
+  const mats={cap:(king?M.kCap:M.mCap).clone(),stem:M.mStem.clone()};
+  mesh(MG.stem,mats.stem,0,.36,0,inner);mesh(MG.gill,mats.stem,0,.66,0,inner);mesh(MG.cap,mats.cap,0,.66,0,inner);
+  for(let i=0;i<7;i++){const a=i/7*TAU+.3,el=i===6?0:.7;const nx=Math.sin(a)*Math.sin(el),ny=Math.cos(el)/.72,nz=Math.cos(a)*Math.sin(el);const s=mesh(MG.spot,king?M.kSpot:M.mSpot,nx*.58,.66+Math.cos(el)*.43,nz*.58,inner,false);s.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),new THREE.Vector3(nx,ny,nz).normalize());}
+  for(const s of[1,-1]){const e=mesh(eyeGeo,M.eye,s*.1,.42,.3,inner,false);e.rotation.y=s*.3;if(king){const b=mesh(LG.brow,M.eye,s*.11,.53,.3,inner,false);b.rotation.z=Math.PI/2-s*.45;}}
+  for(const s of[1,-1]){const f=mesh(monGeo.foot,mats.stem,s*.15,.06,.06,inner);f.scale.set(1.1,.55,1.3);}
+  if(king){const cr=new THREE.Group();cr.position.y=1.05;inner.add(cr);mesh(new THREE.TorusGeometry(.26,.05,8,24),M.crown,0,0,0,cr).rotation.x=Math.PI/2;for(let i=0;i<5;i++){const a=i/5*TAU;mesh(new THREE.ConeGeometry(.06,.18,6),M.crown,Math.sin(a)*.26,.1,Math.cos(a)*.26,cr);}mesh(new THREE.OctahedronGeometry(.07),M.gem,0,.06,.27,cr);
+    const cape=mesh(sEllip(.36,.3,.12,2.2),new THREE.MeshStandardMaterial({color:'#5a2a72',roughness:.8}),0,.35,-.28,inner);}
+  const hp=makeHpBar(root,king?3.9:1.75);return {root,body,ears:null,mats,hpG:hp.g,hpFill:hp.fill,inner};}
+Object.assign(MT,{
+  mush:{name:'버섯',hp:180,dmg:25,spd:2.4,wander:1.0,range:1.8,aggro:9,windup:.5,xp:70,kind:'melee',r:.55,make:()=>makeMushMon(1.15,false)},
+  king:{name:'버섯킹',hp:1250,dmg:35,spd:2.6,wander:0,range:3.6,aggro:KR,windup:.65,xp:600,kind:'boss',r:1.5,make:()=>makeMushMon(2.7,true)},
+});
+Object.assign(SFX,{
+  tick(){tone('square',880,880,.05,.05);},
+  boom(){tone('sine',110,30,.7,.7);noise(.8,.45,900,90,.7);},
+  slam(){tone('sine',90,28,.6,.7);noise(.6,.4,500,80,.7);},
+  spore(){noise(.9,.22,600,2200,.6);},
+  summon(){[330,247,196].forEach((f,i)=>tone('triangle',f,f*.8,.25,.12,i*.08));},
+  roar(){tone('sawtooth',140,70,.8,.12);noise(.7,.2,300,120,.8);},
+  poison(){tone('sine',520,380,.08,.05);},
+});
+
+/* 바닥 경고 표시 (원 · 부채꼴) */
+const teles=[];
+function teleSector(pos,dir,range,half,col,dur){const g=new THREE.CircleGeometry(range,40,-Math.PI/2-half,half*2);g.rotateX(-Math.PI/2);const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.0,depthWrite:false,side:THREE.DoubleSide}));m.position.set(pos.x,.08,pos.z);m.rotation.y=dir;m.renderOrder=4;W.root.add(m);const t={m,t:0,dur};teles.push(t);return t;}
+function teleCircle(pos,r,col,dur){const g=new THREE.CircleGeometry(1,40);g.rotateX(-Math.PI/2);const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0,depthWrite:false}));m.position.set(pos.x,.09,pos.z);m.scale.setScalar(r);m.renderOrder=4;W.root.add(m);const rg=new THREE.Mesh(warnRingGeo,new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.9,depthWrite:false,side:THREE.DoubleSide}));rg.position.set(pos.x,.1,pos.z);rg.scale.setScalar(r);rg.renderOrder=5;W.root.add(rg);const t={m,rg,t:0,dur,grow:true,r};teles.push(t);return t;}
+function updTeles(dt){for(let i=teles.length-1;i>=0;i--){const t=teles[i];t.t+=dt;const k=Math.min(1,t.t/t.dur);
+  if(t.grow){t.m.scale.setScalar(Math.max(.01,t.r*k));t.m.material.opacity=.25+.1*Math.sin(t.t*18);t.rg.material.opacity=.6+.3*Math.sin(t.t*18);}else t.m.material.opacity=(.18+.22*k)+.08*Math.sin(t.t*20);
+  if(t.t>=t.dur||t.kill){t.m.parent&&t.m.parent.remove(t.m);t.m.material.dispose();if(t.rg){t.rg.parent&&t.rg.parent.remove(t.rg);t.rg.material.dispose();}teles.splice(i,1);}}}
+
+/* 포자 (버섯킹 3번 스킬 · 플레이어 스킬) */
+function sporeBurst(origin,dir,range,half){for(let i=0;i<46;i++){const a=dir+R(-half,half),s=R(range*.35,range*1.05);part(pGeo.puff,Math.random()<.5?'#b07ad8':'#9ad86a',origin.clone().add(new THREE.Vector3(0,R(.5,1.2),0)),new THREE.Vector3(Math.sin(a)*s,R(.3,1.2),Math.cos(a)*s),R(.8,1.3),{g:-.3,grow:2.2,soft:true,scale:R(.5,.9)});}
+  for(let i=0;i<10;i++){const a=dir+R(-half,half),r=R(1,range);sparkBurst(origin.clone().add(new THREE.Vector3(Math.sin(a)*r,.6,Math.cos(a)*r)),'#d8a8ff',2,1.5);}SFX.spore();}
+function inSector(o,dir,p,range,half,pad=0){const dx=p.x-o.x,dz=p.z-o.z,d=Math.hypot(dx,dz);if(d>range+pad)return false;if(d<1)return true;return Math.abs(angDiff(dir,Math.atan2(dx,dz)))<half+pad/Math.max(d,1);}
+function poisonPlayer(dmg,dur){const P=player;P.poison={left:dur,tick:.5,dmg};}
+function updPoison(dt){const P=player;if(P.poison&&!P.dead&&state==='play'){P.poison.left-=dt;P.poison.tick-=dt;if(P.poison.tick<=0){P.poison.tick=.5;P.hp=Math.max(0,P.hp-P.poison.dmg);setHP();floatText('-'+P.poison.dmg,P.pos.clone().add(new THREE.Vector3(R(-.3,.3),1.8,0)),'poison');part(pGeo.puff,'#9ad86a',P.pos.clone().add(new THREE.Vector3(0,1.2,0)),new THREE.Vector3(R(-.5,.5),1,R(-.5,.5)),.6,{g:-.5,grow:1,soft:true,scale:.4});cancelRecall();if(P.hp<=0){P.poison=null;die();}}if(P.poison&&P.poison.left<=0)P.poison=null;}
+  $('#hpBar').classList.toggle('poison',!!P.poison);
+  for(const m of mons){if(!m.poison||m.dead)continue;m.poison.left-=dt;m.poison.tick-=dt;if(m.poison.tick<=0){m.poison.tick=.5;hitMon(m,m.poison.dmg,0,0,true);}if(m.poison&&m.poison.left<=0)m.poison=null;}}
+
+/* 죽으면 남기는 버섯 폭탄 */
+const bombs=[];
+function spawnBomb(pos){const g=new THREE.Group();g.position.set(pos.x,0,pos.z);W.root.add(g);const capM=new THREE.MeshStandardMaterial({color:'#d8402e',emissive:'#ff2a10',emissiveIntensity:0,roughness:.5});
+  mesh(MG.stem,M.mStem,0,.36*1.6,0,g).scale.setScalar(1.6);const cap=mesh(MG.cap,capM,0,.66*1.6,0,g);cap.scale.setScalar(1.6);for(let i=0;i<6;i++){const a=i/6*TAU;mesh(MG.spot,M.mSpot,Math.sin(a)*.62,1.05+.32,Math.cos(a)*.62,g,false).scale.setScalar(1.6);}
+  const fuse=mesh(new THREE.CylinderGeometry(.03,.03,.35,6),M.bark,0,1.75,0,g);const spark=new THREE.Sprite(new THREE.SpriteMaterial({map:starTex,color:'#ffd06a',transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));spark.position.y=1.95;spark.scale.setScalar(.5);g.add(spark);
+  const tl=teleCircle(pos,3.5,'#ff3a2a',3);bombs.push({g,capM,spark,t:0,tl,beep:0});}
+function updBombs(dt){for(let i=bombs.length-1;i>=0;i--){const b=bombs[i];b.t+=dt;const k=b.t/3;const f=6+k*22;const pulse=.5+.5*Math.sin(b.t*f);b.g.scale.setScalar(1+pulse*.08*(1+k*2));b.capM.emissiveIntensity=pulse*k*1.2;b.spark.scale.setScalar(.4+Math.random()*.3);b.beep-=dt;if(b.beep<=0){b.beep=.5-k*.38;SFX.tick();}
+  if(b.t>=3){const p=b.g.position.clone();SFX.boom();shake=Math.max(shake,.8);shockRing(p,'#ff8a3a',4.2,.15);shockRing(p,'#ffd06a',3,.2);sparkBurst(p.clone().setY(1),'#ffb347',26,9);dust(p,16,'#8a7458',4);for(let j=0;j<10;j++){const a=R(0,TAU),s=R(2,6);part(pGeo.puff,Math.random()<.5?'#d8402e':'#efe2c6',p.clone().add(new THREE.Vector3(0,1,0)),new THREE.Vector3(Math.sin(a)*s,R(3,7),Math.cos(a)*s),R(.6,1),{g:9,scale:1.3});}xFlash(p.clone().setY(1.2),'#ff6a2a',4.5);
+    const P=player;if(!P.dead&&state==='play'&&!inSafe(P.pos)&&Math.hypot(P.pos.x-p.x,P.pos.z-p.z)<3.5){P.inv=0;hurtPlayer(75,p);}
+    b.g.parent&&b.g.parent.remove(b.g);b.tl.kill=true;bombs.splice(i,1);}}}
+
+/* 버섯킹 */
+let king=null,kingRespawn=0,summons=[];
+function spawnKing(){if(W!==cropWorld)return;const zi=W.zones.indexOf(ARENA_ZONE);const k=spawnMon(zi,false);
+  const t=MT.king,m=k;m.root.parent&&m.root.parent.remove(m.root);mons.splice(mons.indexOf(m),1);
+  const nm=t.make();nm.root.position.copy(KC);W.root.add(nm.root);Object.assign(nm,{k:'king',t,zi,hp:t.hp,maxHp:t.hp,state:'idle',at:0,t2:0,atkCd:1,skillCd:3,flash:0,kb:0,kbx:0,kbz:0,facing:Math.PI,hop:0,seed:monSeed++,dead:false,deathT:0,spawnT:1,moving:false,boss:true});nm.hpG.visible=false;mons.push(nm);king=nm;}
+function kingAct(m,dt){const P=player,p=m.root.position,t=m.t;const pin=inArena(P.pos)&&!P.dead&&state==='play';const dx=P.pos.x-p.x,dz=P.pos.z-p.z,dist=Math.hypot(dx,dz)||.001;
+  m.atkCd-=dt;m.skillCd-=dt;
+  const lean=(x)=>{m.body.rotation.x=damp(m.body.rotation.x,x,12,dt);};
+  if(!pin&&m.state!=='jump'){if(m.engaged){m.engaged=false;for(const s of summons)if(!s.dead){s.dead=true;s.deathT=0;s.noDrop=true;}summons=[];for(const tl of m.tl||[])tl.kill=true;m.tl=[];}
+    m.state='idle';const bx=KC.x-p.x,bz=KC.z-p.z,bd=Math.hypot(bx,bz);if(bd>.5){p.x+=bx/bd*2.2*dt;p.z+=bz/bd*2.2*dt;m.facing=dampAngle(m.facing,Math.atan2(bx,bz),5,dt);m.hop+=dt*6;m.body.position.y=Math.abs(Math.sin(m.hop))*.15;}else{m.facing=dampAngle(m.facing,Math.PI,2,dt);m.body.position.y=damp(m.body.position.y,0,8,dt);}
+    if(m.hp<m.maxHp){m.hp=Math.min(m.maxHp,m.hp+m.maxHp*.25*dt);}lean(0);m.root.rotation.y=m.facing;return;}
+  if(!m.engaged){m.engaged=true;SFX.roar();showBanner('버섯킹이 깨어났다!',1.8);m.skillCd=2.5;}
+  m.tl=m.tl||[];
+  if(m.state==='idle'||m.state==='chase'){m.state='chase';const want=Math.atan2(dx,dz);m.facing=dampAngle(m.facing,want,6,dt);lean(0);
+    if(m.skillCd<=0){const opts=['jump','spore'];if(summons.filter(s=>!s.dead).length===0)opts.push('summon','summon');const pick=opts[(Math.random()*opts.length)|0];m.state=pick;m.at=0;m.done=false;
+      if(pick==='spore'){m.sdir=want;m.tl.push(teleSector(p,m.sdir,9.5,.62,'#b06bff',1.0));}
+      if(pick==='jump'){m.from=p.clone();m.to=new THREE.Vector3(P.pos.x,0,P.pos.z);const td=Math.hypot(m.to.x-KC.x,m.to.z-KC.z);if(td>KR-2){m.to.x=KC.x+(m.to.x-KC.x)/td*(KR-2);m.to.z=KC.z+(m.to.z-KC.z)/td*(KR-2);}m.tl.push(teleCircle(m.to,7,'#ff5a3a',1.35));m.wave=-1;}}
+    else if(dist<t.range+.4&&m.atkCd<=0){m.state='atk';m.at=0;m.done=false;m.adir=want;m.tl.push(teleSector(p,m.adir,t.range+.6,1.05,'#ff5a3a',.65));}
+    else if(dist>t.range-.2){p.x+=dx/dist*t.spd*dt;p.z+=dz/dist*t.spd*dt;m.hop+=dt*7;m.body.position.y=Math.abs(Math.sin(m.hop))*.18;m.body.rotation.z=Math.sin(m.hop)*.06;}
+    else{m.body.position.y=damp(m.body.position.y,0,8,dt);}}
+  else if(m.state==='atk'){m.at+=dt;m.facing=dampAngle(m.facing,m.adir,10,dt);if(m.at<.65)lean(-.45);else lean(.55);
+    if(m.at>=.65&&!m.done){m.done=true;SFX.slam();shake=Math.max(shake,.35);const o=p.clone();sparkBurst(o.clone().add(new THREE.Vector3(Math.sin(m.adir)*2.2,.5,Math.cos(m.adir)*2.2)),'#ffd8a0',10,6);dust(o.clone().add(new THREE.Vector3(Math.sin(m.adir)*2.4,0,Math.cos(m.adir)*2.4)),10,'#8a7458',3);if(inSector(o,m.adir,P.pos,t.range+.6,1.05,.3))hurtPlayer(35,o);}
+    if(m.at>1.15){m.state='chase';m.atkCd=1.6;}}
+  else if(m.state==='jump'){m.at+=dt;const a=m.at;
+    if(a<.35){lean(-.2);m.body.scale.set(1.15,.8,1.15);}
+    else if(a<1.35){const k=(a-.35)/1;m.body.scale.set(1,1.08,1);p.x=lerp(m.from.x,m.to.x,k);p.z=lerp(m.from.z,m.to.z,k);m.body.position.y=Math.sin(Math.PI*k)*7;m.facing+=dt*4;}
+    else{if(m.wave<0){m.wave=0;m.hit=false;p.copy(m.to);m.body.position.y=0;m.body.scale.set(1.25,.7,1.25);SFX.slam();shake=Math.max(shake,.9);dust(p,22,'#8a7458',5);shockRing(p,'#ffb06a',7,.12);shockRing(p,'#fff0c0',5,.15);xFlash(p.clone().setY(.6),'#ffb06a',5);m.ringM=new THREE.Mesh(warnRingGeo,new THREE.MeshBasicMaterial({color:'#ffcf7a',transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide}));m.ringM.position.set(p.x,.25,p.z);W.root.add(m.ringM);}
+      m.wave+=dt*12;const r=m.wave;if(m.ringM){m.ringM.scale.set(r,1,r);m.ringM.material.opacity=Math.max(0,1-r/8);}
+      const pd=Math.hypot(P.pos.x-p.x,P.pos.z-p.z);if(!m.hit&&Math.abs(pd-r)<1.1&&r<8){m.hit=true;hurtPlayer(45,p);}
+      m.body.scale.x=damp(m.body.scale.x,1,8,dt);m.body.scale.y=damp(m.body.scale.y,1,8,dt);m.body.scale.z=m.body.scale.x;
+      if(r>=8.5){if(m.ringM){m.ringM.parent&&m.ringM.parent.remove(m.ringM);m.ringM.material.dispose();m.ringM=null;}m.body.scale.set(1,1,1);m.state='chase';m.skillCd=R(4.5,6.5);m.atkCd=.8;}}}
+  else if(m.state==='summon'){m.at+=dt;const k=Math.min(1,m.at/.6);m.body.scale.set(1+Math.sin(m.at*20)*.04,1+k*.12,1+Math.sin(m.at*20)*.04);lean(-.15);
+    if(m.at>.6&&!m.done){m.done=true;SFX.summon();for(let i=0;i<3;i++){const a=m.facing+(i-1)*2.1;const q=new THREE.Vector3(p.x+Math.sin(a)*3.4,0,p.z+Math.cos(a)*3.4);const s=spawnMon(m.zi,true);s.root.position.copy(q);s.k='mush';s.summon=true;s.wait=0;summons.push(s);dust(q,10,'#8a7458',2.4);sparkBurst(q.clone().setY(.6),'#d8a8ff',8,4);}}
+    if(m.at>1.3){m.body.scale.set(1,1,1);m.state='chase';m.skillCd=R(5,7);}}
+  else if(m.state==='spore'){m.at+=dt;m.facing=dampAngle(m.facing,m.sdir,8,dt);lean(m.at<1?-.3:.4);
+    if(m.at>=1&&!m.done){m.done=true;sporeBurst(p,m.sdir,9.5,.62);if(inSector(p,m.sdir,P.pos,9.5,.62,.3)){hurtPlayer(12,p);poisonPlayer(8,4);showBanner('독에 걸렸다!',1.2);}}
+    if(m.at>1.6){m.state='chase';m.skillCd=R(4.5,6.5);}}
+  const kd=Math.hypot(p.x-KC.x,p.z-KC.z);if(kd>KR-1.4){p.x=KC.x+(p.x-KC.x)/kd*(KR-1.4);p.z=KC.z+(p.z-KC.z)/kd*(KR-1.4);}
+  if(dist<t.r+.4&&m.state!=='jump'){P.pos.x+=dx/dist*(t.r+.4-dist);P.pos.z+=dz/dist*(t.r+.4-dist);}
+  m.root.rotation.y=m.facing;}
+function updBossUI(){const show=king&&!king.dead&&king.engaged;const b=$('#bossBar');if(b.hidden===!!show)b.hidden=!show;if(show){$('#bossFill').style.width=Math.max(0,king.hp/king.maxHp*100)+'%';$('#bossHp').textContent=`${Math.max(0,Math.ceil(king.hp))} / ${king.maxHp}`;}}
+function kingDied(m){m.engaged=false;for(const s of summons)if(!s.dead){s.dead=true;s.deathT=0;s.noDrop=true;}summons=[];for(const tl of m.tl||[])tl.kill=true;if(m.ringM){m.ringM.parent&&m.ringM.parent.remove(m.ringM);}
+  const p=m.root.position.clone();const n=7+((Math.random()*4)|0);for(let i=0;i<n;i++)spawnDrop(p.clone().add(new THREE.Vector3(R(-1,1),0,R(-1,1))),'mush');if(Math.random()<.5)spawnDrop(p.clone(),'skill_spore');
+  SFX.roar();shake=1;sparkBurst(p.clone().setY(2),'#d8a8ff',30,8);shockRing(p,'#d8a8ff',6,.15);showBanner('버섯킹을 쓰러뜨렸다!',2.6);king=null;kingRespawn=90;}
+function updKingRespawn(dt){if(W!==cropWorld||king)return;kingRespawn-=dt;if(kingRespawn<=0&&!inArena(player.pos))spawnKing();}
+
+/* ================= 스킬 시스템 ================= */
+const SKILLS={spore:{name:'포자',cd:9,desc:'앞쪽 먼 부채꼴에 포자를 흩뿌려 피해를 주고, 4초 동안 독에 걸리게 해요.'}};
+const ownedSkills=[];const skillSlots=[null,null,null];const skillCd={};
+function drawSporeIcon(){const c=cnv(128,128),g=c.getContext('2d');const bg=g.createRadialGradient(64,64,6,64,64,60);bg.addColorStop(0,'#5a2a72');bg.addColorStop(1,'#25102e');g.fillStyle=bg;g.beginPath();g.arc(64,64,58,0,TAU);g.fill();
+  g.save();g.translate(30,96);g.rotate(-.75);for(let i=0;i<26;i++){const a=R(-.55,.55),r=R(14,78);const x=Math.sin(a)*r,y=-Math.cos(a)*r;g.fillStyle=Math.random()<.5?'rgba(176,122,216,.85)':'rgba(154,216,106,.85)';g.beginPath();g.arc(x,y,R(3,9)*(r/70+.4),0,TAU);g.fill();}g.restore();
+  g.fillStyle='#efe2c6';g.beginPath();g.ellipse(34,96,9,13,0,0,TAU);g.fill();g.fillStyle='#7b3f98';g.beginPath();g.ellipse(34,84,20,12,0,Math.PI,0);g.fill();g.fillStyle='#e3c2ff';g.beginPath();g.arc(28,79,3,0,TAU);g.arc(40,80,2.5,0,TAU);g.fill();g.strokeStyle='rgba(255,255,255,.25)';g.lineWidth=3;g.beginPath();g.arc(64,64,56,0,TAU);g.stroke();return c;}
+function drawSkillBook(){const c=cnv(128,128),g=c.getContext('2d');g.fillStyle='rgba(0,0,0,.25)';g.beginPath();g.ellipse(66,110,38,7,0,0,TAU);g.fill();g.fillStyle='#5a2a72';g.strokeStyle='#2a0f38';g.lineWidth=3;g.beginPath();g.moveTo(26,30);g.lineTo(98,24);g.lineTo(100,100);g.lineTo(28,106);g.closePath();g.fill();g.stroke();g.fillStyle='#f3e6c8';g.fillRect(30,96,66,6);
+  g.fillStyle='#e8b53a';g.beginPath();for(let i=0;i<10;i++){const a=i/10*TAU-Math.PI/2,r=i%2?9:20;g.lineTo(63+Math.cos(a)*r,63+Math.sin(a)*r);}g.closePath();g.fill();g.strokeStyle='#8a5a10';g.lineWidth=2;g.stroke();return c;}
+function drawMushIcon(){const c=cnv(128,128),g=c.getContext('2d');g.fillStyle='rgba(0,0,0,.25)';g.beginPath();g.ellipse(64,112,30,7,0,0,TAU);g.fill();const st=g.createLinearGradient(44,0,84,0);st.addColorStop(0,'#e6d4b0');st.addColorStop(1,'#fbf2df');g.fillStyle=st;g.strokeStyle='#8a7050';g.lineWidth=3;g.beginPath();g.moveTo(48,62);g.quadraticCurveTo(42,108,64,110);g.quadraticCurveTo(86,108,80,62);g.closePath();g.fill();g.stroke();
+  const cg=g.createRadialGradient(52,40,6,64,56,56);cg.addColorStop(0,'#e86a4c');cg.addColorStop(1,'#8f2a1c');g.fillStyle=cg;g.strokeStyle='#5e160e';g.beginPath();g.moveTo(14,66);g.quadraticCurveTo(18,18,64,16);g.quadraticCurveTo(110,18,114,66);g.quadraticCurveTo(64,74,14,66);g.fill();g.stroke();g.fillStyle='#fbf4e4';for(const[x,y,r]of[[44,36,7],[76,30,6],[92,50,5],[34,56,5],[62,52,6]]){g.beginPath();g.ellipse(x,y,r,r*.8,0,0,TAU);g.fill();}
+  g.fillStyle='#2a170e';g.beginPath();g.ellipse(58,86,2.8,4.5,0,0,TAU);g.ellipse(72,86,2.8,4.5,0,0,TAU);g.fill();return c;}
+IMG.spore=drawSporeIcon().toDataURL();IMG.skillBook=drawSkillBook().toDataURL();IMG.mush=drawMushIcon().toDataURL();SKILLS.spore.icon=IMG.spore;
+ITEMS.mush={name:'버섯',icon:IMG.mush,price:50,desc:'팔면 하나에 50골드'};
+ITEMS.skill_spore={name:'포자 스킬',icon:IMG.spore,desc:'스킬'};
+function makeMushItem(){const g=new THREE.Group(),inner=new THREE.Group();g.add(inner);const s=mesh(MG.stem,M.mStem,0,.2,0,inner);s.scale.setScalar(.55);const c=mesh(MG.cap,M.mCap,0,.38,0,inner);c.scale.setScalar(.55);addGlow(g);g.userData.inner=inner;return g;}
+function makeSkillItem(){const g=new THREE.Group(),inner=new THREE.Group();g.add(inner);const orb=mesh(new THREE.IcosahedronGeometry(.32,2),new THREE.MeshStandardMaterial({color:'#c79aff',emissive:'#8a3cff',emissiveIntensity:1,roughness:.2,transparent:true,opacity:.9}),0,.5,0,inner);
+  for(let i=0;i<6;i++){const a=i/6*TAU;mesh(new THREE.SphereGeometry(.07,8,6),M.kSpot,Math.sin(a)*.5,.5+Math.sin(i)*.15,Math.cos(a)*.5,inner,false);}addGlow(g);addBeam(g,'#b06bff');g.userData.inner=inner;return g;}
+function unlockSkill(k){if(ownedSkills.includes(k)){gold+=300;pickupToast('skill_spore',1);showBanner('이미 가진 스킬이라 300골드로 바뀌었어요',2.2);return;}
+  ownedSkills.push(k);const free=skillSlots.indexOf(null);if(free>=0)skillSlots[free]=k;SFX.level();showBanner(`새 스킬 획득 · ${SKILLS[k].name}${free>=0?` (${free+1}번 칸)`:''}`,2.6);sparkBurst(player.pos.clone().setY(1.2),'#d8a8ff',20,5);renderSkillUI();saveGame();}
+function useSkill(i){const k=skillSlots[i];if(!k||state!=='play'||player.dead||shopOpen||forgeOpen||talkOpen)return;const now=clockT;if((skillCd[k]||0)>now){return;}
+  const P=player;if(!TOUCH&&mouseIn){ray.setFromCamera(mouse,camera);if(ray.ray.intersectPlane(gPlane,hitP)){const dx=hitP.x-P.pos.x,dz=hitP.z-P.pos.z;if(dx*dx+dz*dz>.04)P.facing=Math.atan2(dx,dz);}}
+  else{let best=null,bd=11;for(const m of mons){if(m.dead)continue;const d=Math.hypot(m.root.position.x-P.pos.x,m.root.position.z-P.pos.z);if(d<bd){bd=d;best=m;}}if(best)P.facing=Math.atan2(best.root.position.x-P.pos.x,best.root.position.z-P.pos.z);}
+  skillCd[k]=now+SKILLS[k].cd;
+  if(k==='spore'){const dir=P.facing,o=P.pos.clone();const tl=teleSector(o,dir,9.5,.62,'#9ad86a',.28);setTimeout(()=>{sporeBurst(o,dir,9.5,.62);const dmg=atk()*2+10,pd=Math.round(4+atk()*.6);for(const m of mons){if(m.dead||m.spawnT<1)continue;if(inSector(o,dir,m.root.position,9.5,.62,m.t.r)){hitMon(m,dmg,0,0);if(!m.dead)m.poison={left:4,tick:.5,dmg:pd};}}},280);
+    P.atkT=-1;shake=Math.max(shake,.15);}}
+function renderSkillUI(){const bar=$('#skillBar');[...bar.children].forEach((b,i)=>{const k=skillSlots[i];const im=b.querySelector('img');if(k){im.src=SKILLS[k].icon;im.hidden=false;b.classList.remove('empty');b.title=`${SKILLS[k].name} (${i+1})`;}else{im.hidden=true;b.classList.add('empty');b.title=`${i+1}번 칸 비어 있음`;}});
+  bar.hidden=!(W===cropWorld||ownedSkills.length);
+  const sl=$('#sSlots');if(!sl)return;sl.innerHTML='';skillSlots.forEach((k,i)=>{const d=document.createElement('button');d.className='sslot'+(k?' has':'');const key=document.createElement('b');key.textContent=i+1;d.appendChild(key);if(k){const im=document.createElement('img');im.src=SKILLS[k].icon;im.alt='';d.appendChild(im);d.title='눌러서 빼기';d.onclick=()=>{skillSlots[i]=null;SFX.ui();renderSkillUI();};}sl.appendChild(d);});
+  const L=$('#sList');L.innerHTML='';if(!ownedSkills.length){const n=document.createElement('div');n.className='none';n.textContent='아직 스킬이 없어요. 몬스터를 잡으면 스킬을 얻을 수 있어요. 깊은 숲의 버섯킹이 포자 스킬을 떨어뜨린대요.';L.appendChild(n);}
+  for(const k of ownedSkills){const s=SKILLS[k];const r=document.createElement('div');r.className='wrow';const im=document.createElement('img');im.src=s.icon;im.alt='';const tx=document.createElement('div');const n=document.createElement('div');n.className='n';n.textContent=s.name;const d=document.createElement('div');d.className='d';d.textContent=`${s.desc} · 재사용 ${s.cd}초`;tx.append(n,d);
+    const bs=document.createElement('div');bs.className='skbtns';for(let i=0;i<3;i++){const b=document.createElement('button');b.className='btn'+(skillSlots[i]===k?' pri':'');b.textContent=i+1;b.onclick=()=>{const was=skillSlots.indexOf(k);if(skillSlots[i]===k){skillSlots[i]=null;}else{if(was>=0)skillSlots[was]=null;skillSlots[i]=k;}SFX.ui();renderSkillUI();};bs.appendChild(b);}r.append(im,tx,bs);L.appendChild(r);}}
+function updSkillCd(){const bar=$('#skillBar');if(bar.hidden)return;[...bar.children].forEach((b,i)=>{const k=skillSlots[i];const o=b.querySelector('.cdm');if(!k){o.style.background='';o.textContent='';return;}const left=(skillCd[k]||0)-clockT;if(left>0){const p=left/SKILLS[k].cd;o.style.background=`conic-gradient(rgba(10,10,8,.72) ${p*360}deg, transparent 0)`;o.textContent=Math.ceil(left);}else{o.style.background='';o.textContent='';}});}
 
 /* ================= 마을 건물 · NPC (평야 안전구역 + 숲속 마을) ================= */
 M.plaster=std(texRep('sack',2,2),{color:'#efe4cc',roughness:.9});
@@ -1940,7 +2126,7 @@ function buildVillage(){
   bench(5.5,155,-Math.PI/2);bench(-1.5,162.5,Math.PI);barrel(13.5,149.5);barrel(14.1,150.3);barrel(-13.2,163.5);
   crate(6.2,165,.3);crate(6.9,165.4,-.2);
   const fl=[];for(let i=0;i<140;i++){const a=R(0,TAU),r=R(VR-3.5,VR-1.2);fl.push({x:VC.x+Math.sin(a)*r,z:VC.z+Math.cos(a)*r,s:R(.9,1.3),h:R(.9,1.3)});}
-  plantInst(PLANT_GEO.flower,fl,.05,.5,[.95,1.05]);
+  plantInst(PLANT_GEO.flower,fl,.02,.5,[.95,1.05]);
   const tf=[];let tr=0;while(tf.length<900&&tr<9000){tr++;const x=R(-52,52),z=R(122,178);const dv=Math.hypot(x-VC.x,z-VC.z);if(dv<VR+1.5||Math.abs(x)<2.8)continue;tf.push({x,z,s:R(.55,.95),h:R(.4,.7)});}plants('grass',tf,.05);
   return npcs;}
 
@@ -1955,12 +2141,16 @@ function buildDeepForest(){
   const dp=patch(0,222,116,96,'forest',4,'rect',5,0,.017);dp.material.color.set('#7d9474');
   for(let i=0;i<6;i++){const z=180+i*14;patch(Math.sin(i*1.3)*4,z+7,4.6,16,'dirt',2.4,'rect',1.2,0,.024).material.color.set('#b8a890');}
   const pathX=z=>Math.sin(((z-180)/14)*1.3)*4;
-  let n=0,tries=0;while(n<95&&tries<3000){tries++;const x=R(-50,50),z=R(180,262);if(Math.abs(x-pathX(z))<4.5)continue;if(TREES.some(t=>t.dark&&Math.hypot(t.x-x,t.z-z)<4.2))continue;(Math.random()<.5?bigPine:darkTree)(x,z,R(1.3,2.1));n++;}
-  for(let i=0;i<55;i++){const z=R(182,260),x=pathX(z)+R(3,14)*(Math.random()<.5?-1:1);const glow=Math.random()<.35;for(let k=0;k<3;k++)mushroom(x+R(-.6,.6),z+R(-.6,.6),R(.8,1.6),glow);}
+  const blocked=(x,z,pad=1)=>Math.hypot(x-KC.x,z-KC.z)<KR+3.5||DEEP_ZONES.some(zn=>x>zn.x0-pad&&x<zn.x1+pad&&z>zn.z0-pad&&z<zn.z1+pad);
+  {const ap=patch(KC.x,KC.z,KR*2+2,KR*2+2,'forest',3,'circle',.18);ap.material.color.set('#8f8aa0');
+   for(let a=0;a<TAU;a+=3.1/(KR+1.3)){if(Math.abs(angDiff(a,0))<.26||Math.abs(angDiff(a,Math.PI))<.26)continue;const x=KC.x+Math.sin(a)*(KR+1.3),z=KC.z+Math.cos(a)*(KR+1.3);(Math.random()<.5?bigPine:darkTree)(x+R(-.3,.3),z+R(-.3,.3),R(1.25,1.55));}
+   for(let i=0;i<22;i++){const a=R(0,TAU),r=R(KR-2.5,KR-.8);if(Math.abs(angDiff(a,0))<.35||Math.abs(angDiff(a,Math.PI))<.35)continue;mushroom(KC.x+Math.sin(a)*r,KC.z+Math.cos(a)*r,R(1,1.8),Math.random()<.6);}}
+  let n=0,tries=0;while(n<95&&tries<3000){tries++;const x=R(-50,50),z=R(180,262);if(Math.abs(x-pathX(z))<4.5||blocked(x,z))continue;if(TREES.some(t=>t.dark&&Math.hypot(t.x-x,t.z-z)<4.2))continue;(Math.random()<.5?bigPine:darkTree)(x,z,R(1.3,2.1));n++;}
+  for(let i=0;i<55;i++){const z=R(182,260),x=pathX(z)+R(3,14)*(Math.random()<.5?-1:1);if(Math.hypot(x-KC.x,z-KC.z)<KR+2)continue;const glow=Math.random()<.35;for(let k=0;k<3;k++)mushroom(x+R(-.6,.6),z+R(-.6,.6),R(.8,1.6),glow);}
   for(const[x,z,r,l]of[[-12,198,.4,5],[14,214,-.7,6],[-9,236,1.1,4.5],[18,248,.2,5.5],[-20,252,-.3,5]])log(x,z,r,l);
-  for(let i=0;i<14;i++){const x=R(-45,45),z=R(182,260);if(Math.abs(x-pathX(z))<4)continue;rock(x,z,R(.8,1.8));}
+  for(let i=0;i<14;i++){const x=R(-45,45),z=R(182,260);if(Math.abs(x-pathX(z))<4||blocked(x,z,0))continue;rock(x,z,R(.8,1.8));}
   const ferns=[];tries=0;while(ferns.length<1500&&tries<12000){tries++;const x=R(-52,52),z=R(178,264);if(Math.abs(x-pathX(z))<2.6)continue;ferns.push({x,z,s:R(.9,1.4),h:R(.7,1.2)});}
-  plantInst(PLANT_GEO.grass,ferns,.04,.5,[.55,.75]);
+  plantInst(PLANT_GEO.grass,ferns,.018,.5,[.55,.75]);
   for(let i=0;i<46;i++){const s=new THREE.Sprite(new THREE.SpriteMaterial({map:fireTex,color:'#e8ff9a',transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));const b=new THREE.Vector3(R(-40,40),R(.6,2.6),R(182,262));s.position.copy(b);s.scale.setScalar(R(.25,.45));ROOT.add(s);fireflies.push({s,b,ph:R(0,TAU),sp:R(.6,1.4)});}
 }
 function updDeep(dt){if(W!==cropWorld||player.pos.z<165)return;for(const f of fireflies){f.ph+=dt*f.sp;f.s.position.set(f.b.x+Math.sin(f.ph)*1.2,f.b.y+Math.sin(f.ph*1.7)*.4,f.b.z+Math.cos(f.ph*.8)*1.2);f.s.material.opacity=.45+.55*Math.max(0,Math.sin(f.ph*2.3));}}
@@ -2018,6 +2208,7 @@ async function buildCrops(prog){
     {x0:-42,x1:-12,z0:16,z1:54,types:[['rice',.75],['wheat',.25]],max:5,kind:'paddy'},
     {x0:12,x1:42,z0:16,z1:54,types:[['rice',1]],max:5,kind:'paddy'},
     {x0:-28,x1:28,z0:80,z1:116,types:[['apple',1]],max:6,kind:'grove'},
+    ...DEEP_ZONES,ARENA_ZONE,
   ];
   const inZone=(x,z,pad=1.5)=>zones.some(zn=>x>zn.x0-pad&&x<zn.x1+pad&&z>zn.z0-pad&&z<zn.z1+pad);
   makeGround(0,105,440);
@@ -2063,7 +2254,7 @@ async function buildCrops(prog){
   // 미니맵 바탕
   const k=3,x0=-62,z0=-58,x1=62,z1=272;const c=cnv((x1-x0)*k,(z1-z0)*k),g=c.getContext('2d');const X=x=>(x-x0)*k,Z=z=>(z-z0)*k;
   g.fillStyle='#5b7a35';g.fillRect(0,0,c.width,c.height);for(let i=0;i<400;i++){g.fillStyle=Math.random()<.5?'rgba(120,160,70,.25)':'rgba(40,60,20,.18)';g.beginPath();g.arc(R(0,c.width),R(0,c.height),R(4,14),0,TAU);g.fill();}
-  g.fillStyle='#46622a';g.fillRect(X(-59),Z(63),118*k,72*k);g.fillStyle='#2e4724';g.fillRect(X(-59),Z(176),118*k,94*k);
+  g.fillStyle='#46622a';g.fillRect(X(-59),Z(63),118*k,72*k);g.fillStyle='#2e4724';g.fillRect(X(-59),Z(176),118*k,94*k);g.fillStyle='#4a3d5c';g.beginPath();g.arc(X(KC.x),Z(KC.z),KR*k,0,TAU);g.fill();
   g.fillStyle='#a6845a';g.fillRect(X(-2.2),Z(114),4.4*k,24*k);g.beginPath();g.arc(X(VC.x),Z(VC.z),VR*k,0,TAU);g.fill();g.fillStyle='#8a7458';for(let i=0;i<6;i++){const z=180+i*14;g.fillRect(X(Math.sin(i*1.3)*4-2.3),Z(z),4.6*k,16*k);}
   g.strokeStyle='#5a3f26';g.lineWidth=3;g.beginPath();g.arc(X(VC.x),Z(VC.z),VR*k,Math.PI/2+.13,Math.PI*1.5-.13);g.stroke();g.beginPath();g.arc(X(VC.x),Z(VC.z),VR*k,-Math.PI/2+.13,Math.PI/2-.13);g.stroke();
   for(const zn of zones)drawZone(g,zn,X,Z,k);
@@ -2075,7 +2266,7 @@ async function buildCrops(prog){
   prog(1);
   const w={name:'작물의 세계',root,colliders,boxes,zones,safe:{x:0,z:0,r:9.4},safes:[{x:0,z:0,r:9.4},{x:VC.x,z:VC.z,r:VR}],fence:false,spawn:new THREE.Vector3(0,0,2.6),
     npc:town1[0],
-    clamp:p=>{p.x=clamp(p.x,-50,50);p.z=clamp(p.z,-44,262);},region:p=>p.z>177.5?'깊은 숲':p.z>134?'숲속 마을':p.z>64?'숲':'평야',map:{c,x0,z0,k}};
+    clamp:p=>{p.x=clamp(p.x,-50,50);p.z=clamp(p.z,-44,262);},region:p=>inArena(p)?'버섯킹의 둥지':p.z>177.5?'깊은 숲':p.z>134?'숲속 마을':p.z>64?'숲':'평야',map:{c,x0,z0,k}};
   w.npcs=[...town1,...vnpcs];
   ROOT=scene;return w;
 }
@@ -2083,7 +2274,7 @@ const nextFrame=()=>new Promise(r=>requestAnimationFrame(()=>r()));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
 /* ================= 지역 이동 ================= */
-function switchWorld(w){setTimeout(renderRecall,0);clearWorldActors();scene.remove(W.root);scene.add(w.root);W=w;colliders=w.colliders;boxes=w.boxes;populate();coinMark.position.set(w.npc.pos.x,2.1,w.npc.pos.z);$('#lgNpc').textContent=w.npc.name;$('#prompt span').textContent=w.npc.prompt;curRegion='';}
+function switchWorld(w){setTimeout(renderRecall,0);setTimeout(renderSkillUI,0);setTimeout(()=>{if(W===cropWorld&&!king)spawnKing();},0);clearWorldActors();scene.remove(W.root);scene.add(w.root);W=w;colliders=w.colliders;boxes=w.boxes;populate();coinMark.position.set(w.npc.pos.x,2.1,w.npc.pos.z);$('#lgNpc').textContent=w.npc.name;$('#prompt span').textContent=w.npc.prompt;curRegion='';}
 let traveling=false;
 async function travelToCrops(){
   if(traveling||state!=='play')return;traveling=true;
@@ -2116,7 +2307,7 @@ function drawMini(){const mp=W.map;if(!mp)return;
   g.save();g.translate(c,c);g.rotate(yaw);g.scale(pm/mp.k,pm/mp.k);g.translate(-(px-mp.x0)*mp.k,-(pz-mp.z0)*mp.k);g.drawImage(mp.c,0,0);g.restore();
   for(const d of drops){const[x,y]=to(d.g.position.x,d.g.position.z);g.fillStyle='#ffe08a';g.beginPath();g.arc(x,y,3.5,0,TAU);g.fill();}
   for(const r of rains){const[x,y]=to(r.x,r.z);g.strokeStyle='rgba(255,80,60,.8)';g.lineWidth=2;g.beginPath();g.arc(x,y,r.r*pm,0,TAU);g.stroke();}
-  for(const m of mons){if(m.dead)continue;const[x,y]=to(m.root.position.x,m.root.position.z);g.fillStyle=m.k==='apple'?'#ff3b4f':m.k==='rice'?'#ff9a4a':'#ff6b5a';g.strokeStyle='rgba(40,10,5,.7)';g.lineWidth=2;g.beginPath();g.arc(x,y,m.k==='apple'?7:6,0,TAU);g.fill();g.stroke();}
+  for(const m of mons){if(m.dead)continue;const[x,y]=to(m.root.position.x,m.root.position.z);g.fillStyle=m.k==='king'?'#b06bff':m.k==='mush'?'#e0603a':m.k==='apple'?'#ff3b4f':m.k==='rice'?'#ff9a4a':'#ff6b5a';g.strokeStyle='rgba(40,10,5,.7)';g.lineWidth=2;g.beginPath();g.arc(x,y,m.k==='king'?12:m.k==='apple'||m.k==='mush'?7:6,0,TAU);g.fill();g.stroke();}
   for(const n of W.npcs||[]){if(Math.hypot(n.pos.x-px,n.pos.z-pz)>VIEW*1.5)continue;const[x,y]=to(n.pos.x,n.pos.z);g.lineWidth=2.5;
     if(n.kind==='smith'){g.fillStyle='#c9d3dc';g.strokeStyle='#2a2e33';g.beginPath();g.arc(x,y,8,0,TAU);g.fill();g.stroke();g.fillStyle='#2a2e33';g.fillRect(x-4.5,y-3.5,9,3.5);g.fillRect(x-1.2,y-1,2.4,5.5);}
     else if(n.kind==='inn'){g.fillStyle='#8fd0ec';g.strokeStyle='#18465a';g.beginPath();g.arc(x,y,8,0,TAU);g.fill();g.stroke();g.fillStyle='#18465a';g.beginPath();g.moveTo(x,y-5);g.lineTo(x+5,y-.5);g.lineTo(x+3.5,y-.5);g.lineTo(x+3.5,y+4);g.lineTo(x-3.5,y+4);g.lineTo(x-3.5,y-.5);g.lineTo(x-5,y-.5);g.closePath();g.fill();}
@@ -2227,14 +2418,15 @@ function touchUp(e){camTouches.delete(e.pointerId);if(camTouches.size<2)pinch0=0
 })();
 function updTouchUI(){if(!TOUCH)return;if(atkHeld&&state==='play')tryAttack(true);$('#tE').classList.toggle('off',!(state==='play'&&nearNpc()));const ico=equipped?ITEMS[equipped].icon:IMG.hoe;const im=$('#tAtkIco');if(im.dataset.k!==String(equipped)){im.dataset.k=String(equipped);im.src=ico;im.style.opacity=equipped?1:.35;}}
 
+$('#icoSkill').src=IMG.skillBook;$('#btnSkill').addEventListener('click',()=>openWin('sWin'));document.querySelectorAll('#skillBar .sk').forEach(b=>b.addEventListener('pointerdown',e=>{e.preventDefault();useSkill(+b.dataset.i);}));renderSkillUI();
 $('#icoRecall').src=IMG.recall;$('#btnRecall').addEventListener('click',startRecall);
 /* ================= 저장 (이 기기 브라우저) ================= */
 const SAVE_KEY='crop-rebellion-save-v1';
-function saveGame(){if(state!=='play'||!player.rig.root.visible)return;try{localStorage.setItem(SAVE_KEY,JSON.stringify({v:1,stage:W===cropWorld?'crops':'farm',gold,level,xp,inv:{...inv},bag:[...bag],owned:[...owned],equipped,look:{...look},name:player.name,qi,qProg,returnPoint,hp:Math.ceil(player.hp),t:Date.now()}));}catch(e){}}
+function saveGame(){if(state!=='play'||!player.rig.root.visible)return;try{localStorage.setItem(SAVE_KEY,JSON.stringify({v:1,stage:W===cropWorld?'crops':'farm',gold,level,xp,inv:{...inv},bag:[...bag],owned:[...owned],equipped,look:{...look},name:player.name,qi,qProg,returnPoint,skills:[...ownedSkills],slots:[...skillSlots],hp:Math.ceil(player.hp),t:Date.now()}));}catch(e){}}
 function loadSave(){try{const d=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');return d&&d.v===1?d:null;}catch(e){return null;}}
 function clearSave(){try{localStorage.removeItem(SAVE_KEY);}catch(e){}}
 let saveT=0;
-function applySave(d){returnPoint=RETURN[d.returnPoint]?d.returnPoint:'start';gold=goldShown=d.gold|0;level=d.level||1;xp=d.xp||0;for(const k in inv)inv[k]=(d.inv&&d.inv[k])|0;bag.length=0;for(const k of d.bag||[])if(ITEMS[k]&&inv[k]>0)bag.push(k);
+function applySave(d){ownedSkills.length=0;for(const k of d.skills||[])if(SKILLS[k])ownedSkills.push(k);(d.slots||[]).forEach((k,i)=>{if(i<3)skillSlots[i]=SKILLS[k]&&ownedSkills.includes(k)?k:null;});setTimeout(renderSkillUI,0);returnPoint=RETURN[d.returnPoint]?d.returnPoint:'start';gold=goldShown=d.gold|0;level=d.level||1;xp=d.xp||0;for(const k in inv)inv[k]=(d.inv&&d.inv[k])|0;bag.length=0;for(const k of d.bag||[])if(ITEMS[k]&&inv[k]>0)bag.push(k);
   owned.length=0;for(const k of d.owned||[])if(ITEMS[k])owned.push(k);Object.assign(look,d.look||{});applyLook();
   if(d.name){player.name=d.name;setNameTag(d.name);$('#nickN').textContent=d.name;$('#nickN').hidden=false;}
   player.maxHp=maxHpFor(level);player.hp=clamp(d.hp||player.maxHp,1,player.maxHp);
@@ -2264,7 +2456,7 @@ function frame(){
   updTimers(dt);
   if(state==='play'||state==='cine'||state==='arrive'||state==='create')updPlayer(dt);
   if(state==='play'){saveT-=dt;if(saveT<=0){saveT=5;saveGame();}}
-  updTouchUI();updFarmer(dt);updNpcs(dt);updDeep(dt);updRecall(dt);updSlashes(dt);updXFlash(dt);updSparks(dt);updJuice(dt);updTrail(dt,player.swingActive&&state==='play');updMons(dt);updProjs(dt);updRains(dt);updDrops(dt);updParts(dt);updCamera(dt);updFloats(dt);
+  updTouchUI();updFarmer(dt);updNpcs(dt);updDeep(dt);updRecall(dt);updTeles(dt);updBombs(dt);updPoison(dt);updBossUI();updKingRespawn(dt);updSkillCd();updSlashes(dt);updXFlash(dt);updSparks(dt);updJuice(dt);updTrail(dt,player.swingActive&&state==='play');updMons(dt);updProjs(dt);updRains(dt);updDrops(dt);updParts(dt);updCamera(dt);updFloats(dt);
   if(state==='play'){
     goldShown=goldShown>gold?gold:goldShown<gold?Math.min(gold,goldShown+Math.max(1,(gold-goldShown)*8*dt)):gold;$('#goldN').textContent=Math.round(goldShown);
     const near=nearNpc();const pr=$('#prompt');
@@ -2274,8 +2466,8 @@ function frame(){
     const rg=W.region(player.pos);if(rg!==curRegion){curRegion=rg;if(W!==farmWorld)showRegion(rg);}
     drawMini();
   }else coinMark.visible=false;
-  const rg2=W===cropWorld?W.region(player.pos):'';const tgtL=({'숲':.72,'숲속 마을':.92,'깊은 숲':.52})[rg2]||1;lightK=damp(lightK,tgtL,1.5,dt);sun.intensity=1.55*lightK;hemi.intensity=.72*(.85+.15*lightK);
-  deepK=damp(deepK,rg2==='깊은 숲'?1:0,1.2,dt);scene.fog.color.copy(SKY0).lerp(DEEPFOG,deepK);SKY.copy(scene.fog.color);scene.fog.near=48-28*deepK;scene.fog.far=120-48*deepK;
+  const rg2=W===cropWorld?W.region(player.pos):'';const tgtL=({'숲':.72,'숲속 마을':.92,'깊은 숲':.52,'버섯킹의 둥지':.6})[rg2]||1;lightK=damp(lightK,tgtL,1.5,dt);sun.intensity=1.55*lightK;hemi.intensity=.72*(.85+.15*lightK);
+  deepK=damp(deepK,(rg2==='깊은 숲'||rg2==='버섯킹의 둥지')?1:0,1.2,dt);scene.fog.color.copy(SKY0).lerp(DEEPFOG,deepK);SKY.copy(scene.fog.color);scene.fog.near=48-28*deepK;scene.fog.far=120-48*deepK;
   if(bannerT>0){bannerT-=dt;if(bannerT<=0)$('#banner').classList.remove('on');}
   renderer.render(scene,camera);
 }
