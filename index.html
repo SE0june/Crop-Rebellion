@@ -1574,8 +1574,8 @@ function tryAttack(fromTouch){const P=player;if(shopOpen||forgeOpen||talkOpen||P
   P.atkT=0;P.atkCd=WEP[equipped].cd;P.swooshed=false;P.dealt=false;P.wk=equipped;if(equipped==='sword')SFX.slash();else SFX.swing();}
 function dealDamage(){const P=player;let any=false;const dmg=atk();const k=P.wk||'hoe',w=WEP[k];swingImpactFx(k);for(const m of mons){if(m.dead||m.spawnT<1)continue;const dx=m.root.position.x-P.pos.x,dz=m.root.position.z-P.pos.z,d=Math.hypot(dx,dz);if(d-m.t.r>w.range)continue;const a=Math.atan2(dx,dz);if(d<1+m.t.r||Math.abs(angDiff(P.facing,a))<w.arc){hitMon(m,dmg,dx/(d||1),dz/(d||1));hitFx(m,k);any=true;}}if(any){shake=Math.max(shake,k==='sword'?.3:.2);if(k==='sword')SFX.squish();}}
 function hitMon(m,dmg,nx,nz,pois){if(m.dead)return;const heavy=m.k==='king'?0:m.k==='mush'?.6:m.k==='apple'?.45:1;m.hp-=dmg;m.flash=pois?.5:1;if(heavy){m.kb=.2;m.kbx=nx*6*heavy;m.kbz=nz*6*heavy;}if(!m.boss)m.hpG.visible=true;if(m.state==='attack')m.state='chase';if(!m.boss)m.atkCd=Math.max(m.atkCd,.5);if(!pois){SFX.hit();chaff(m.root.position,6);}floatText(String(dmg),m.root.position.clone().add(new THREE.Vector3(0,m.boss?4.2:1.5,0)),pois?'poison':'');
-  if(m.hp<=0){m.dead=true;m.deathT=0;m.hpG.visible=false;SFX.kill();chaff(m.root.position,16);dust(m.root.position,6,'#d9c08a',1.6);if(m.k==='king')kingDied(m);else{spawnDrop(m.root.position.clone(),m.k);if(m.k==='mush')spawnBomb(m.root.position.clone());}if(m.k==='rice'&&Math.random()<.2)spawnDrop(m.root.position.clone(),'grain');if(m.k==='apple'&&Math.random()<.15)spawnDrop(m.root.position.clone(),'peel');gainXP(m.t.xp,m.root.position);if(m.k==='wheat')questEvent('kill');}}
-function hurtPlayer(dmg,from){const P=player;if(P.inv>0||P.dead||state!=='play')return;P.hp=Math.max(0,P.hp-dmg);P.inv=.55;cancelRecall('공격받아 귀환이 취소됐어요');const dx=P.pos.x-from.x,dz=P.pos.z-from.z,d=Math.hypot(dx,dz)||1;P.kbx=dx/d*7;P.kbz=dz/d*7;shake=.35;SFX.hurt();setHP();floatText('-'+dmg,P.pos.clone().add(new THREE.Vector3(0,1.75,0)),'hurt');const h=$('#hurt');h.style.transition='none';h.style.opacity='1';requestAnimationFrame(()=>{h.style.transition='opacity .5s';h.style.opacity='0';});if(P.hp<=0)die();}
+  if(m.hp<=0){m.dead=true;m.deathT=0;m.hpG.visible=false;SFX.kill();chaff(m.root.position,16);dust(m.root.position,6,'#d9c08a',1.6);if(m.k==='king')kingDied(m);else if(m.k==='boom'){if(m.fuseTl)m.fuseTl.kill=true;dust(m.root.position,8,'#8a7458',2);}else{spawnDrop(m.root.position.clone(),m.k);if(m.k==='mush')spawnBomb(m.root.position.clone());}if(m.k==='rice'&&Math.random()<.2)spawnDrop(m.root.position.clone(),'grain');if(m.k==='apple'&&Math.random()<.15)spawnDrop(m.root.position.clone(),'peel');gainXP(m.t.xp,m.root.position);if(m.k==='wheat')questEvent('kill');}}
+function hurtPlayer(dmg,from){const P=player;if(P.inv>0||P.dead||state!=='play')return;P.hp=Math.max(0,P.hp-dmg);P.inv=.55;P.lastHurt=clockT;cancelRecall('공격받아 귀환이 취소됐어요');const dx=P.pos.x-from.x,dz=P.pos.z-from.z,d=Math.hypot(dx,dz)||1;P.kbx=dx/d*7;P.kbz=dz/d*7;shake=.35;SFX.hurt();setHP();floatText('-'+dmg,P.pos.clone().add(new THREE.Vector3(0,1.75,0)),'hurt');const h=$('#hurt');h.style.transition='none';h.style.opacity='1';requestAnimationFrame(()=>{h.style.transition='opacity .5s';h.style.opacity='0';});if(P.hp<=0)die();}
 function die(){const P=player;P.dead=true;P.atkT=-1;P.poison=null;showBanner('쓰러졌다…',2);const f=$('#fade');setTimeout(()=>{f.style.opacity='1';},700);setTimeout(()=>{P.pos.copy(W===cropWorld?RETURN[returnPoint].pos:W.spawn);P.hp=P.maxHp;P.dead=false;P.kbx=P.kbz=0;P.rig.body.rotation.set(0,0,0);setHP();camFocus.copy(P.pos);f.style.opacity='0';showBanner(W===farmWorld?'농부가 농장으로 데려다 줬다':`${RETURN[returnPoint].name}에서 정신을 차렸다`,2.2);},1700);}
 
 /* ================= 이동/충돌 ================= */
@@ -1652,7 +1652,7 @@ function updPlayer(dt){
   // 안전구역
   const safe=inSafe(P.pos);
   if(state==='play'){if(safe!==P.inSafe){P.inSafe=safe;showBanner(safe?'안전구역':'안전구역을 벗어났다',1.3);const t=$('#safeTag');t.textContent=safe?'안전구역 · 체력 회복 중':'바깥 밭 · 위험 지역';t.classList.toggle('out',!safe);}
-    if(safe&&P.hp<P.maxHp){P.hp=Math.min(P.maxHp,P.hp+15*dt);setHP();}}
+    if(P.hp<P.maxHp&&!P.dead){const calm=clockT-(P.lastHurt||-99)>5;const rate=safe?15:(P.poison?0:P.maxHp*(calm?.03:.01));if(rate>0){P.hp=Math.min(P.maxHp,P.hp+rate*dt);setHP();}}}
 }
 function updFarmer(dt){
   const F=farmer,r=F.rig;F.t+=dt;
@@ -1680,7 +1680,7 @@ function updMons(dt){
     if(m.dead){m.deathT+=dt;const k=Math.min(1,m.deathT/.45);m.body.scale.set(1+k*.4,Math.max(.01,1-k),1+k*.4);m.body.rotation.y+=dt*10;if(k>=1){m.root.parent&&m.root.parent.remove(m.root);m.remove=true;}continue;}
     m.atkCd-=dt;m.skillCd-=dt;m.flash=Math.max(0,m.flash-dt*5);
     const fe=m.flash*.55;for(const k in m.mats)m.mats[k].emissive.setRGB(fe,fe*.9,fe*.7);if(m.poison)for(const k in m.mats)m.mats[k].emissive.g+=.18;
-    if(m.k==='king'){kingAct(m,dt);continue;}
+    if(m.k==='king'){kingAct(m,dt);continue;}if(m.k==='boom'){boomAct(m,dt);continue;}
     const dx=P.pos.x-p.x,dz=P.pos.z-p.z,dist=Math.hypot(dx,dz)||.001;
     let vx=0,vz=0,want=null;
     if(m.kb>0){m.kb-=dt;vx=m.kbx;vz=m.kbz;m.kbx=damp(m.kbx,0,10,dt);m.kbz=damp(m.kbz,0,10,dt);m.body.rotation.x=damp(m.body.rotation.x,-.35,12,dt);}
@@ -1855,7 +1855,7 @@ farmWorld.map=farmMap();farmWorld.npcs=[farmWorld.npc];
 /* ================= 깊은 숲: 버섯 · 버섯킹 · 스킬 ================= */
 const KC=new THREE.Vector3(0,0,244),KR=13;
 const DEEP_ZONES=[{x0:-42,x1:-12,z0:186,z1:224,types:[['mush',1]],max:4,kind:'grove'},{x0:12,x1:42,z0:190,z1:226,types:[['mush',1]],max:4,kind:'grove'}];
-const ARENA_ZONE={x0:KC.x-KR+2,x1:KC.x+KR-2,z0:KC.z-KR+2,z1:KC.z+KR-2,types:[['mush',1]],max:0,kind:'arena'};
+const ARENA_ZONE={x0:KC.x-KR+2,x1:KC.x+KR-2,z0:KC.z-KR+2,z1:KC.z+KR-2,types:[['boom',1]],max:0,kind:'arena'};
 const inArena=p=>Math.hypot(p.x-KC.x,p.z-KC.z)<KR;
 M.mCap=vinyl('#b2452f');M.mStem=vinyl('#efe2c6');M.mSpot=vinyl('#fbf4e4');M.kCap=vinyl('#7b3f98');M.kSpot=new THREE.MeshStandardMaterial({color:'#e3c2ff',emissive:'#b06bff',emissiveIntensity:.8,roughness:.4});M.crown=vinyl('#e8b53a',{roughness:.35,metalness:.4});M.gem=new THREE.MeshStandardMaterial({color:'#7cf0c0',emissive:'#2bd99a',emissiveIntensity:.8});
 const MG={stem:(()=>{const g=new THREE.CylinderGeometry(.27,.34,.62,18,3);const p=g.attributes.position;for(let i=0;i<p.count;i++){const y=p.getY(i),k=1+.1*Math.cos(y*4);p.setX(i,p.getX(i)*k);p.setZ(i,p.getZ(i)*k);}g.computeVertexNormals();return g;})(),
@@ -1871,6 +1871,7 @@ function makeMushMon(sc,king){const root=new THREE.Group(),body=new THREE.Group(
   const hp=makeHpBar(root,king?3.9:1.75);return {root,body,ears:null,mats,hpG:hp.g,hpFill:hp.fill,inner};}
 Object.assign(MT,{
   mush:{name:'버섯',hp:180,dmg:25,spd:2.4,wander:1.0,range:1.8,aggro:9,windup:.5,xp:70,kind:'melee',r:.55,make:()=>makeMushMon(1.15,false)},
+  boom:{name:'폭탄 버섯',hp:40,dmg:40,spd:3.5,wander:1.2,range:1.8,aggro:16,xp:5,kind:'boom',r:.4,make:()=>makeBoomMon()},
   king:{name:'버섯킹',hp:1250,dmg:35,spd:2.6,wander:0,range:3.6,aggro:KR,windup:.65,xp:600,kind:'boss',r:1.5,make:()=>makeMushMon(2.7,true)},
 });
 Object.assign(SFX,{
@@ -1896,7 +1897,7 @@ function sporeBurst(origin,dir,range,half){for(let i=0;i<46;i++){const a=dir+R(-
   for(let i=0;i<10;i++){const a=dir+R(-half,half),r=R(1,range);sparkBurst(origin.clone().add(new THREE.Vector3(Math.sin(a)*r,.6,Math.cos(a)*r)),'#d8a8ff',2,1.5);}SFX.spore();}
 function inSector(o,dir,p,range,half,pad=0){const dx=p.x-o.x,dz=p.z-o.z,d=Math.hypot(dx,dz);if(d>range+pad)return false;if(d<1)return true;return Math.abs(angDiff(dir,Math.atan2(dx,dz)))<half+pad/Math.max(d,1);}
 function poisonPlayer(dmg,dur){const P=player;P.poison={left:dur,tick:.5,dmg};}
-function updPoison(dt){const P=player;if(P.poison&&!P.dead&&state==='play'){P.poison.left-=dt;P.poison.tick-=dt;if(P.poison.tick<=0){P.poison.tick=.5;P.hp=Math.max(0,P.hp-P.poison.dmg);setHP();floatText('-'+P.poison.dmg,P.pos.clone().add(new THREE.Vector3(R(-.3,.3),1.8,0)),'poison');part(pGeo.puff,'#9ad86a',P.pos.clone().add(new THREE.Vector3(0,1.2,0)),new THREE.Vector3(R(-.5,.5),1,R(-.5,.5)),.6,{g:-.5,grow:1,soft:true,scale:.4});cancelRecall();if(P.hp<=0){P.poison=null;die();}}if(P.poison&&P.poison.left<=0)P.poison=null;}
+function updPoison(dt){const P=player;if(P.poison&&!P.dead&&state==='play'){P.poison.left-=dt;P.poison.tick-=dt;if(P.poison.tick<=0){P.poison.tick=.5;P.hp=Math.max(0,P.hp-P.poison.dmg);P.lastHurt=clockT;setHP();floatText('-'+P.poison.dmg,P.pos.clone().add(new THREE.Vector3(R(-.3,.3),1.8,0)),'poison');part(pGeo.puff,'#9ad86a',P.pos.clone().add(new THREE.Vector3(0,1.2,0)),new THREE.Vector3(R(-.5,.5),1,R(-.5,.5)),.6,{g:-.5,grow:1,soft:true,scale:.4});cancelRecall();if(P.hp<=0){P.poison=null;die();}}if(P.poison&&P.poison.left<=0)P.poison=null;}
   $('#hpBar').classList.toggle('poison',!!P.poison);
   for(const m of mons){if(!m.poison||m.dead)continue;m.poison.left-=dt;m.poison.tick-=dt;if(m.poison.tick<=0){m.poison.tick=.5;hitMon(m,m.poison.dmg,0,0,true);}if(m.poison&&m.poison.left<=0)m.poison=null;}}
 
@@ -1911,6 +1912,21 @@ function updBombs(dt){for(let i=bombs.length-1;i>=0;i--){const b=bombs[i];b.t+=d
     const P=player;if(!P.dead&&state==='play'&&!inSafe(P.pos)&&Math.hypot(P.pos.x-p.x,P.pos.z-p.z)<3.5){P.inv=0;hurtPlayer(75,p);}
     b.g.parent&&b.g.parent.remove(b.g);b.tl.kill=true;bombs.splice(i,1);}}}
 
+
+/* 버섯킹이 부르는 폭탄 버섯: 공격하지 않고 다가와서 터지기만 함 */
+function makeBoomMon(){const o=makeMushMon(.8,false);o.mats.cap.color.set('#e0452e');const top=new THREE.Group();top.position.y=.66*.8+.38;o.inner.parent.add(top);
+  mesh(new THREE.CylinderGeometry(.025,.025,.22,6),M.bark,0,.1,0,top);const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:starTex,color:'#ffd06a',transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));sp.position.y=.26;sp.scale.setScalar(.4);top.add(sp);o.fuseSpark=sp;return o;}
+function boomAct(m,dt){const P=player,p=m.root.position,t=m.t;const dx=P.pos.x-p.x,dz=P.pos.z-p.z,dist=Math.hypot(dx,dz)||.001;m.fuseSpark.scale.setScalar(.3+Math.random()*.25);
+  if(m.fuse==null){const chase=state==='play'&&!P.dead&&!inSafe(P.pos)&&dist<t.aggro;
+    if(chase){m.facing=dampAngle(m.facing,Math.atan2(dx,dz),10,dt);p.x+=dx/dist*t.spd*dt;p.z+=dz/dist*t.spd*dt;m.hop+=dt*14;m.body.position.y=Math.abs(Math.sin(m.hop))*.14;m.body.rotation.z=Math.sin(m.hop)*.15;
+      if(dist<t.range){m.fuse=0;m.fuseTl=teleCircle(p,3,'#ff3a2a',1.1);SFX.tick();}}
+    else{m.body.position.y=damp(m.body.position.y,0,8,dt);}
+    for(const c of colliders){const cx=p.x-c.x,cz=p.z-c.z,d=Math.hypot(cx,cz),mm=c.r+t.r;if(d<mm&&d>1e-4){p.x=c.x+cx/d*mm;p.z=c.z+cz/d*mm;}}W.clamp(p);}
+  else{m.fuse+=dt;const k=m.fuse/1.1;const pulse=.5+.5*Math.sin(m.fuse*(10+k*30));m.body.scale.setScalar(1+pulse*.15*(1+k));m.mats.cap.emissive.setRGB(pulse*k*1.2,pulse*k*.2,0);m.body.position.y=damp(m.body.position.y,0,10,dt);
+    if(m.fuse>=1.1){SFX.boom();shake=Math.max(shake,.5);shockRing(p,'#ff8a3a',3.2,.15);sparkBurst(p.clone().setY(.8),'#ffb347',16,7);dust(p,10,'#8a7458',3);xFlash(p.clone().setY(.9),'#ff6a2a',3);
+      if(m.fuseTl)m.fuseTl.kill=true;if(!P.dead&&state==='play'&&!inSafe(P.pos)&&dist<3){P.inv=0;hurtPlayer(40,p);}
+      m.dead=true;m.deathT=.45;m.root.visible=false;}}
+  m.root.rotation.y=m.facing;}
 /* 버섯킹 */
 let king=null,kingRespawn=0,summons=[];
 function spawnKing(){if(W!==cropWorld)return;const zi=W.zones.indexOf(ARENA_ZONE);const k=spawnMon(zi,false);
@@ -1943,7 +1959,7 @@ function kingAct(m,dt){const P=player,p=m.root.position,t=m.t;const pin=inArena(
       m.body.scale.x=damp(m.body.scale.x,1,8,dt);m.body.scale.y=damp(m.body.scale.y,1,8,dt);m.body.scale.z=m.body.scale.x;
       if(r>=8.5){if(m.ringM){m.ringM.parent&&m.ringM.parent.remove(m.ringM);m.ringM.material.dispose();m.ringM=null;}m.body.scale.set(1,1,1);m.state='chase';m.skillCd=R(4.5,6.5);m.atkCd=.8;}}}
   else if(m.state==='summon'){m.at+=dt;const k=Math.min(1,m.at/.6);m.body.scale.set(1+Math.sin(m.at*20)*.04,1+k*.12,1+Math.sin(m.at*20)*.04);lean(-.15);
-    if(m.at>.6&&!m.done){m.done=true;SFX.summon();for(let i=0;i<3;i++){const a=m.facing+(i-1)*2.1;const q=new THREE.Vector3(p.x+Math.sin(a)*3.4,0,p.z+Math.cos(a)*3.4);const s=spawnMon(m.zi,true);s.root.position.copy(q);s.k='mush';s.summon=true;s.wait=0;summons.push(s);dust(q,10,'#8a7458',2.4);sparkBurst(q.clone().setY(.6),'#d8a8ff',8,4);}}
+    if(m.at>.6&&!m.done){m.done=true;SFX.summon();for(let i=0;i<3;i++){const a=m.facing+(i-1)*2.1;const q=new THREE.Vector3(p.x+Math.sin(a)*3.4,0,p.z+Math.cos(a)*3.4);const s=spawnMon(m.zi,true);s.root.position.copy(q);s.summon=true;s.wait=0;summons.push(s);dust(q,10,'#8a7458',2.4);sparkBurst(q.clone().setY(.6),'#d8a8ff',8,4);}}
     if(m.at>1.3){m.body.scale.set(1,1,1);m.state='chase';m.skillCd=R(5,7);}}
   else if(m.state==='spore'){m.at+=dt;m.facing=dampAngle(m.facing,m.sdir,8,dt);lean(m.at<1?-.3:.4);
     if(m.at>=1&&!m.done){m.done=true;sporeBurst(p,m.sdir,9.5,.62);if(inSector(p,m.sdir,P.pos,9.5,.62,.3)){hurtPlayer(12,p);poisonPlayer(8,4);showBanner('독에 걸렸다!',1.2);}}
